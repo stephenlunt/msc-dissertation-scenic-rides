@@ -1,33 +1,57 @@
-import { StatusBar } from 'expo-status-bar';
+import { StatusBar } from "expo-status-bar";
 
-import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NativeBaseProvider } from 'native-base';
+import React from "react";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NativeBaseProvider } from "native-base";
 
-import AllRoutes from './src/screens/AllRoutes';
-import Route from './src/screens/Route';
+import customTheme from "./src/theme";
+import Home from "./src/screens/Home";
+import Route from "./src/screens/Route";
 
 /**
  * https://reactnavigation.org/docs/typescript
  */
 export type RootStackParamList = {
-  AllRoutes: undefined;
-  Route: { routeId: string };
+  Home: undefined;
+  Route: { id: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+/**
+ * https://reactnavigation.org/docs/themes/
+ */
+const navigatorTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: "#ffffff",
+    card: "rgb(225, 37, 25)",
+    background: "#f5f5f5",
+    text: "#ffffff",
+    border: "transparent"
+  }
+};
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <NativeBaseProvider>
-        <Stack.Navigator initialRouteName='AllRoutes'>
-          <Stack.Screen name='AllRoutes' component={AllRoutes} />
-          <Stack.Screen name='Route' component={Route} />
+    <NavigationContainer theme={navigatorTheme}>
+      <NativeBaseProvider theme={customTheme}>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ title: "Home" }}
+          />
+          <Stack.Screen
+            name="Route"
+            component={Route}
+            options={({ route }) => ({ title: route.params.id })}
+          />
         </Stack.Navigator>
       </NativeBaseProvider>
-      <StatusBar style='auto' />
+      <StatusBar style="auto" />
     </NavigationContainer>
   );
 }
