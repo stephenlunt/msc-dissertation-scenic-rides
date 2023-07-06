@@ -8,6 +8,7 @@ import { NativeBaseProvider } from "native-base";
 import customTheme from "./src/theme";
 import Home from "./src/screens/Home";
 import Route from "./src/screens/Route";
+import Guidebook from "./src/screens/Guidebook";
 
 /**
  * https://reactnavigation.org/docs/typescript
@@ -15,6 +16,7 @@ import Route from "./src/screens/Route";
 export type RootStackParamList = {
   Home: undefined;
   Route: { id: string };
+  Guidebook: { id: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -47,6 +49,11 @@ export default function App() {
           <Stack.Screen
             name="Route"
             component={Route}
+            options={({ route }) => ({ title: route.params.id })}
+          />
+          <Stack.Screen
+            name="Guidebook"
+            component={Guidebook}
             options={({ route }) => ({ title: route.params.id })}
           />
         </Stack.Navigator>
