@@ -7,7 +7,10 @@ import { extendTheme } from "native-base";
 const customTheme = extendTheme({
   colors: {
     primary: "rgb(225, 37, 25)",
-    transparentBlack: "rgba(0, 0, 0, 0.5)"
+    secondary: "rgb(251, 168, 0)",
+    backdrop: "rgb(234 239 248)",
+    transparentBlack: "rgba(0, 0, 0, 0.5)",
+    borderColor: "rgb(229, 231, 235)"
   },
   config: {
     initialColorMode: "light"
