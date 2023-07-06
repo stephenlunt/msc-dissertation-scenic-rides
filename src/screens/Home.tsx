@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { ScrollView, Pressable, Box, Image, Heading, Text } from "native-base";
 
 import { RootStackParamList } from "../../App";
-import { routes } from "../data/routes";
+import { busRoutes } from "../data/busRoutes";
 import ImageCard from "../components/ImageCard";
 
 type routeScreenProp = NativeStackNavigationProp<RootStackParamList, "Route">;
@@ -17,11 +17,11 @@ export default function Home() {
         Explore some of England's most scenic bus routes in the North East.
       </Text>
 
-      {routes.map((route) => {
+      {busRoutes.map((busRoute) => {
         return (
           <Pressable
-            key={route.id}
-            onPress={() => navigation.navigate("Route", { id: route.id })}
+            key={busRoute.id}
+            onPress={() => navigation.navigate("Route", { id: busRoute.id })}
             position="relative"
             overflow="hidden"
             height={280}
@@ -29,11 +29,11 @@ export default function Home() {
             my={2}
           >
             <ImageCard
-              imgSrc={route.imgSrc}
-              imgAlt={`Image of ${route.name}`}
-              heading={route.id}
-              innerText={route.name}
               height={280}
+              imgSrc={busRoute.imgSrc}
+              imgAlt={`Image of ${busRoute.name}`}
+              heading={busRoute.id}
+              innerText={busRoute.name}
             />
           </Pressable>
         );
