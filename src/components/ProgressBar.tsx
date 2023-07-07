@@ -7,6 +7,7 @@ type Props = {
 };
 
 export default function ProgressBar({ percentage }: Props) {
+  // The adjusted percentage ensure correct visual alignment versus the raw percentage.
   const [adjustedPercentage, setAdjustedPercentage] = useState<number>();
 
   useEffect(() => {

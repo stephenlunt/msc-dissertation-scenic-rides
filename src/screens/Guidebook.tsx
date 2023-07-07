@@ -1,11 +1,24 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ScrollView, Flex, Box, Text, Button, Heading } from "native-base";
+import {
+  View,
+  ScrollView,
+  Flex,
+  Box,
+  Text,
+  Button,
+  Heading,
+  IconButton
+} from "native-base";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
 import type { BusStop } from "../data/busStops";
-import { busStops } from "../data/busStops";
+import { stopsData } from "../data/busStops";
+import type { Attraction } from "../data/attractions";
+import { attractionData } from "../data/attractions";
 import ProgressBar from "../components/ProgressBar";
+import StopList from "../components/StopList";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Guidebook">;
 
@@ -15,14 +28,25 @@ enum Direction {
 }
 
 export default function Guidebook({ route, navigation }: Props) {
+  // Navigation state
   const { id } = route.params;
+
+  // Data import state
   const [stops, setStops] = useState<BusStop[]>();
+  const [attractions, setAttractions] = useState<Attraction[]>();
+
+  // Functional state
   const [direction, setDirection] = useState<Direction>(Direction.Outbound);
   const [routePercentage, setRoutePercentage] = useState<number>(20); // TODO: make dynamic
+  const [lastStop, setLastStop] = useState<number>(4);
+  const [nextStop, setNextStop] = useState<number>(5);
 
-  useLayoutEffect(() => {
-    setStops(busStops.filter((busRoute) => busRoute.id === id)[0].stops);
-  }, []);
+  useEffect(() => {
+    setStops(stopsData.filter((busRoute) => busRoute.id === id)[0].stops);
+    setAttractions(
+      attractionData.filter((busRoute) => busRoute.id === id)[0].attractions
+    );
+  }, [stops, attractions]);
 
   /**
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
@@ -43,41 +67,48 @@ export default function Guidebook({ route, navigation }: Props) {
     }
   }
 
-  return stops ? (
-    <ScrollView mx={4} my={2}>
-      <Heading my={2} textAlign="center">
-        Direction: {direction}
-      </Heading>
-      <Button onPress={swapDirection} bgColor="secondary" color="black">
-        <Text>Swap</Text>
-      </Button>
-
-      <Flex flexDirection="row" my={4}>
-        <ProgressBar percentage={routePercentage} />
-        <Flex flexDirection="column" flexGrow={1}>
-          {stops.map((stop, index) => {
-            return (
-              <>
-                <Box
-                  key={stop.sequence}
-                  bgColor="backdrop"
-                  p={4}
-                  mb={4}
-                  borderRadius={10}
-                  borderColor="borderColor"
-                  borderWidth={1}
-                >
-                  <Heading size="sm">
-                    {index + 1}. {stop.name}
-                  </Heading>
-                </Box>
-              </>
-            );
-          })}
-        </Flex>
+  return stops && attractions ? (
+    <View>
+      <Flex
+        px={4}
+        py={2}
+        bgColor="gray.100"
+        borderBottomColor="borderColor"
+        borderBottomWidth={1}
+        direction="row"
+        justifyContent="space-between"
+      >
+        <Heading my="auto" textAlign="center">
+          {direction}
+        </Heading>
+        <IconButton
+          icon={
+            <MaterialCommunityIcons
+              name="swap-horizontal-variant"
+              size={24}
+              color="black"
+            />
+          }
+          onPress={swapDirection}
+        />
       </Flex>
-    </ScrollView>
+
+      <ScrollView mx={4} pb={4}>
+        <Text pt={2}>
+          Explore what the {id} has to offer at every stop along the route.
+        </Text>
+        <Flex flexDirection="row" my={4}>
+          <ProgressBar percentage={routePercentage} />
+          <StopList
+            stops={stops}
+            attractions={attractions}
+            lastStop={lastStop}
+            nextStop={nextStop}
+          />
+        </Flex>
+      </ScrollView>
+    </View>
   ) : (
-    <Box>Invalid bus route.</Box>
+    <Box>Loading route data...</Box>
   );
 }

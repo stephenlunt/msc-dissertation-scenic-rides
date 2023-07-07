@@ -9,9 +9,11 @@ export type BusStop = {
   name: string;
   lat: number;
   long: number;
+  details?: string;
+  attractions?: number[];
 };
 
-export const busStops: Route[] = [
+export const stopsData: Route[] = [
   {
     id: "AD122",
     totalStops: 18,
@@ -20,13 +22,16 @@ export const busStops: Route[] = [
         sequence: 1,
         name: "Hexham Bus Station",
         lat: 54.97032110000001,
-        long: -2.0958298
+        long: -2.0958298,
+        attractions: [1]
       },
       {
         sequence: 2,
         name: "Hexham Railway Station",
         lat: 54.973015,
-        long: -2.094787
+        long: -2.094787,
+        details:
+          "Exchange here for trains towards Newcastle upon Tyne and Carlisle."
       },
       {
         sequence: 3,
@@ -44,7 +49,8 @@ export const busStops: Route[] = [
         sequence: 5,
         name: "Brunton Crossroads",
         lat: 55.025692,
-        long: -2.124615
+        long: -2.124615,
+        attractions: [2, 3, 4]
       },
       {
         sequence: 6,
@@ -56,13 +62,15 @@ export const busStops: Route[] = [
         sequence: 7,
         name: "Chesters Roman Fort",
         lat: 55.028831,
-        long: -2.138062
+        long: -2.138062,
+        attractions: [5]
       },
       {
         sequence: 8,
         name: "Brocolitia Roman Fort",
         lat: 55.0356873,
-        long: -2.2204436
+        long: -2.2204436,
+        attractions: [6]
       },
       {
         sequence: 9,

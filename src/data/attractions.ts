@@ -4,30 +4,83 @@
 
 import { ImageSourcePropType } from "react-native";
 
+type Route = {
+  id: string;
+  totalAttractions: number;
+  attractions: Attraction[];
+};
+
+export type Attraction = {
+  id: number;
+  name: string;
+  nearestStop: number;
+  coordinates: Coordinates;
+};
+
 type Coordinates = {
   lat: number;
   long: number;
 };
 
-export type Attraction = {
-  routeId: string;
-  name: string;
-  coordinates: Coordinates;
-  cutoffRoutePoint: number;
-  routePosition: number;
-  nearestStop: number;
-};
-
-export const routes: Attraction[] = [
+export const attractionData: Route[] = [
   {
-    routeId: "AD122",
-    name: "Attraction 1",
-    coordinates: {
-      lat: 1,
-      long: 1
-    },
-    cutoffRoutePoint: 1, // Don't show once this point is passed.
-    routePosition: 1,
-    nearestStop: 1
+    id: "AD122",
+    totalAttractions: 0,
+    attractions: [
+      {
+        id: 1,
+        name: "Hexham Abbey",
+        nearestStop: 1,
+        coordinates: {
+          lat: 54.97146,
+          long: -2.1025
+        }
+      },
+      {
+        id: 2,
+        name: "Chesters Bridge Abutment",
+        nearestStop: 5,
+        coordinates: {
+          lat: 55.02506,
+          long: -2.13568
+        }
+      },
+      {
+        id: 3,
+        name: "Brunton Turret",
+        nearestStop: 5,
+        coordinates: {
+          lat: 55.023,
+          long: -2.12432
+        }
+      },
+      {
+        id: 4,
+        name: "Planetrees Roman Wall",
+        nearestStop: 5,
+        coordinates: {
+          lat: 55.02092,
+          long: -2.11239
+        }
+      },
+      {
+        id: 5,
+        name: "Chesters Roman Fort",
+        nearestStop: 7,
+        coordinates: {
+          lat: 55.02519,
+          long: -2.13788
+        }
+      },
+      {
+        id: 6,
+        name: "Temple of Mithras",
+        nearestStop: 0,
+        coordinates: {
+          lat: 55.03383,
+          long: -2.2225
+        }
+      }
+    ]
   }
 ];
