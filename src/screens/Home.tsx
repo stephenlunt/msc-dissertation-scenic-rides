@@ -12,7 +12,7 @@ export default function Home() {
   const navigation = useNavigation<routeScreenProp>();
 
   return (
-    <ScrollView mx={4} my={2}>
+    <ScrollView px={4} py={2}>
       <Text my={2} textAlign="center">
         Explore some of England's most scenic bus routes in the North East.
       </Text>

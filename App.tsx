@@ -30,7 +30,7 @@ const navigatorTheme = {
     ...DefaultTheme.colors,
     primary: "#ffffff",
     card: "rgb(225, 37, 25)",
-    background: "#f5f5f5",
+    background: "#ffffff",
     text: "#ffffff",
     border: "transparent"
   }
@@ -51,11 +51,7 @@ export default function App() {
             component={Route}
             options={({ route }) => ({ title: route.params.id })}
           />
-          <Stack.Screen
-            name="Guidebook"
-            component={Guidebook}
-            options={({ route }) => ({ title: route.params.id })}
-          />
+          <Stack.Screen name="Guidebook" component={Guidebook} />
         </Stack.Navigator>
       </NativeBaseProvider>
       <StatusBar style="auto" />
