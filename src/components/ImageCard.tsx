@@ -18,7 +18,13 @@ export default function ImageCard({
 }: Props) {
   return (
     <>
-      <Image source={imgSrc} alt={imgAlt} maxWidth={400} maxHeight={height} />
+      <Image
+        source={imgSrc}
+        alt={imgAlt}
+        maxWidth={360}
+        maxHeight={height}
+        borderRadius={10}
+      />
       {heading || innerText ? (
         <Box
           position="absolute"

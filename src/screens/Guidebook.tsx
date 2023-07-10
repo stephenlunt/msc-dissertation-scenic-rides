@@ -6,7 +6,6 @@ import {
   Flex,
   Box,
   Text,
-  Button,
   Heading,
   IconButton
 } from "native-base";
@@ -20,14 +19,17 @@ import { attractionData } from "../data/attractions";
 import ProgressBar from "../components/ProgressBar";
 import StopList from "../components/StopList";
 
-type Props = NativeStackScreenProps<RootStackParamList, "Guidebook">;
+type GuidebookScreenProps = NativeStackScreenProps<
+  RootStackParamList,
+  "Guidebook"
+>;
 
 enum Direction {
   Outbound = "Hexham to Haltwhistle",
   Inbound = "Haltwhistle to Hexham"
 }
 
-export default function Guidebook({ route, navigation }: Props) {
+export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Navigation state
   const { id } = route.params;
 
@@ -37,7 +39,7 @@ export default function Guidebook({ route, navigation }: Props) {
 
   // Functional state
   const [direction, setDirection] = useState<Direction>(Direction.Outbound);
-  const [routePercentage, setRoutePercentage] = useState<number>(20); // TODO: make dynamic
+  const [routePercentage, setRoutePercentage] = useState<number>(15); // TODO: make dynamic
   const [lastStop, setLastStop] = useState<number>(4);
   const [nextStop, setNextStop] = useState<number>(5);
 

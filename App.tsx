@@ -9,6 +9,7 @@ import customTheme from "./src/theme";
 import Home from "./src/screens/Home";
 import Route from "./src/screens/Route";
 import Guidebook from "./src/screens/Guidebook";
+import Attraction from "./src/screens/Attraction";
 
 /**
  * https://reactnavigation.org/docs/typescript
@@ -17,6 +18,8 @@ export type RootStackParamList = {
   Home: undefined;
   Route: { id: string };
   Guidebook: { id: string };
+  Attraction: { id: number; routeId: string };
+  Stop: {id: number }
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,7 +47,7 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={Home}
-            options={{ title: "Home" }}
+            options={{ title: "Scenic Rides" }}
           />
           <Stack.Screen
             name="Route"
@@ -52,6 +55,7 @@ export default function App() {
             options={({ route }) => ({ title: route.params.id })}
           />
           <Stack.Screen name="Guidebook" component={Guidebook} />
+          <Stack.Screen name="Attraction" component={Attraction} />
         </Stack.Navigator>
       </NativeBaseProvider>
       <StatusBar style="auto" />

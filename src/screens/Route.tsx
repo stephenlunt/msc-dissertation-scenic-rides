@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Box, Text, Pressable } from "native-base";
+import { ScrollView, Box, Heading, Text, Pressable, Image } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import type { BusRoute } from "../data/busRoutes";
@@ -9,9 +9,9 @@ import { busRoutes } from "../data/busRoutes";
 /**
  * https://reactnavigation.org/docs/typescript/
  */
-type Props = NativeStackScreenProps<RootStackParamList, "Route">;
+type RouteScreenProps = NativeStackScreenProps<RootStackParamList, "Route">;
 
-export default function Route({ route, navigation }: Props) {
+export default function Route({ route, navigation }: RouteScreenProps) {
   const { id } = route.params;
   const [routeDetails, setRouteDetails] = useState<BusRoute>();
 
@@ -20,18 +20,43 @@ export default function Route({ route, navigation }: Props) {
   }, []);
 
   return routeDetails ? (
-    <Box>
-      <Text>{routeDetails.id}</Text>
-      <Text>{routeDetails.name}</Text>
-      <Text>{routeDetails.description}</Text>
+    <ScrollView mx={4} pb={4}>
+      <Heading py={4} textAlign="center">
+        {routeDetails.name}
+      </Heading>
+      <Text pb={4}>{routeDetails.description}</Text>
+
       <Pressable
         onPress={() =>
           navigation.navigate("Guidebook", { id: routeDetails.id })
         }
+        height={180}
+        bgColor="green.300"
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        borderRadius={10}
+        my={2}
+        p={4}
       >
-        <Text>See Guidebook.</Text>
+        <Box width="50%">
+          <Heading pb={4} color="green.900">
+            Route Guidebook
+          </Heading>
+          <Text color="green.900">View the route guidebook</Text>
+        </Box>
+        <Image
+          source={require("../assets/img/guidebook.jpeg")}
+          alt="View our route guidebook"
+          maxWidth={150}
+          maxHeight={150}
+        />
       </Pressable>
-    </Box>
+
+      <Heading textAlign="center">Credit</Heading>
+      <Text>Information for this route was sourced from: ...</Text>
+    </ScrollView>
   ) : (
     <Box>Invalid bus route</Box>
   );

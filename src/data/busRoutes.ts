@@ -21,7 +21,8 @@ export const busRoutes: BusRoute[] = [
     origin: "Hexham",
     destination: "Haltwhistle",
     imgSrc: require("../assets/img/ad122_bus.jpg"),
-    description: "Hello, World!",
+    description:
+      "The AD122 is a scenic route running through the Northumberland countryside between the towns of Hexham and Haltwhistle.",
     frequency: ""
   }
 ];

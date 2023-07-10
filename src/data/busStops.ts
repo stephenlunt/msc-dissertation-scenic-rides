@@ -1,3 +1,5 @@
+import { Facility } from "../components/FacilityIcon";
+
 type Route = {
   id: string;
   totalStops: number;
@@ -10,7 +12,16 @@ export type BusStop = {
   lat: number;
   long: number;
   details?: string;
+  facilities?: Facilities;
   attractions?: number[];
+};
+
+type Facilities = {
+  allFacilities: Facility[];
+  credit: {
+    displayName: string;
+    src: string;
+  };
 };
 
 export const stopsData: Route[] = [
@@ -31,7 +42,14 @@ export const stopsData: Route[] = [
         lat: 54.973015,
         long: -2.094787,
         details:
-          "Exchange here for trains towards Newcastle upon Tyne and Carlisle."
+          "Depart here for trains towards Newcastle upon Tyne and Carlisle.",
+        facilities: {
+          allFacilities: [Facility.Toilets, Facility.CarPark],
+          credit: {
+            displayName: "Northern Rail",
+            src: "https://www.northernrailway.co.uk/stations/hexham"
+          }
+        }
       },
       {
         sequence: 3,
@@ -76,31 +94,36 @@ export const stopsData: Route[] = [
         sequence: 9,
         name: "Housesteads Visitor Centre",
         lat: 55.01002099999999,
-        long: -2.323052000000001
+        long: -2.323052000000001,
+        attractions: [7]
       },
       {
         sequence: 10,
         name: "The Sill",
         lat: 54.995895,
-        long: -2.38804
+        long: -2.38804,
+        attractions: [8]
       },
       {
         sequence: 11,
         name: "Vindolanda",
         lat: 54.995895,
-        long: -2.38804
+        long: -2.38804,
+        attractions: [9]
       },
       {
         sequence: 12,
-        name: "The Sill",
+        name: "The Sill (Return)",
         lat: 54.995895,
-        long: -2.38804
+        long: -2.38804,
+        attractions: [8]
       },
       {
         sequence: 13,
         name: "Milecastle Inn",
         lat: 54.987782,
-        long: -2.445705
+        long: -2.445705,
+        attractions: [10]
       },
       {
         sequence: 14,
@@ -130,7 +153,8 @@ export const stopsData: Route[] = [
         sequence: 18,
         name: "Walltown Quarry",
         lat: 54.986729,
-        long: -2.520126
+        long: -2.520126,
+        attractions: [11, 12]
       }
     ]
   }

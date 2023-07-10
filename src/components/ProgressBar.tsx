@@ -34,7 +34,7 @@ export default function ProgressBar({ percentage }: Props) {
         position="absolute"
         left={3}
         zIndex={10}
-        bgColor="green.600"
+        bgColor="green.700"
         height={`${adjustedPercentage}%`}
         width={2}
         borderRadius={10}
