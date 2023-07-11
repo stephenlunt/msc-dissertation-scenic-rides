@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+import { LocationObject } from "expo-location";
 import {
   Flex,
   Box,
   Heading,
   Text,
-  Badge,
-  VStack,
-  Pressable
+  Pressable,
+  ScrollView,
+  Badge
 } from "native-base";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
@@ -26,6 +27,7 @@ type StopListComponentProp = NativeStackNavigationProp<
 type Props = {
   stops: BusStop[];
   attractions: Attraction[];
+  geolocation: LocationObject | undefined;
   lastStop: number;
   nextStop: number;
 };
@@ -33,19 +35,18 @@ type Props = {
 export default function StopList({
   stops,
   attractions,
+  geolocation,
   lastStop,
   nextStop
 }: Props) {
   // https://reactnavigation.org/docs/connecting-navigation-prop/
   const navigation = useNavigation<StopListComponentProp>();
 
-  const [distanceAway, setDistanceAway] = useState<number>();
-
   useEffect(() => {
-    if (stops) {
+    if (stops && geolocation) {
       const pointA = {
-        lat: stops!.at(lastStop)!.lat,
-        long: stops!.at(lastStop)!.long
+        lat: geolocation?.coords.latitude,
+        long: geolocation?.coords.longitude
       };
 
       const pointB = {
@@ -53,74 +54,72 @@ export default function StopList({
         long: stops!.at(nextStop)!.long
       };
 
-      setDistanceAway(haversine(pointA, pointB));
+      console.log(pointA, pointB);
+
+      console.log(haversine(pointA, pointB));
     }
-  }, [stops, lastStop, nextStop]);
+  }, [stops, geolocation, lastStop, nextStop]);
 
   return (
     <Flex flexDirection="column" flexShrink={1}>
       {stops.map((stop, index) => {
+        let multipleAttractions: boolean = stop.attractions
+          ? stop.attractions.length > 1
+          : false;
+
         return (
           <Box
             key={stop.sequence}
-            bgColor="backdrop"
-            p={4}
-            mb={4}
-            borderRadius={10}
-            borderColor="borderColor"
-            borderWidth={1}
+            mb={8}
+            h="230px"
+            borderBottomColor="borderColor"
+            borderBottomWidth={1}
           >
-            <Heading size="sm" pb={2}>
-              {index + 1}. {stop.name}
-            </Heading>
-
+            <Heading pb={2}>{stop.name}</Heading>
+            <Badge colorScheme="info" width="20" mb={2}>{`STOP ${
+              stop.sequence + 1
+            }`}</Badge>
             {stop.details && <Text>{stop.details}</Text>}
 
-            {stop.sequence === nextStop && (
-              <>
-                <Flex direction="row" justifyContent="space-between" pb={2}>
-                  <Badge variant="solid" bg="green.700">
-                    NEXT STOP
-                  </Badge>
-                  <Text color="green.700">
-                    {distanceAway?.toFixed(0)}m away
-                  </Text>
-                </Flex>
-              </>
-            )}
+            {stop.attractions ? (
+              <ScrollView
+                horizontal={multipleAttractions ? true : false}
+                mb={2}
+              >
+                {stop.attractions.map((attractionId, index) => {
+                  let currentAttraction = attractions.filter(
+                    (attraction) => attraction.id === attractionId
+                  )[0];
 
-            <VStack space={2}>
-              {attractions
-                ? attractions
-                    .filter(
-                      (attraction) => attraction.nearestStop === stop.sequence
-                    )
-                    .map((attraction, index) => {
-                      return (
-                        <Pressable
-                          key={index}
-                          onPress={() =>
-                            navigation.navigate("Attraction", {
-                              id: attraction.id,
-                              routeId: "AD122" // TODO: make dynamic
-                            })
-                          }
-                          bgColor="green.200"
-                          borderRadius={10}
-                          px={2}
-                          py={4}
-                        >
-                          <AttractionIcon
-                            attraction={attraction.icon}
-                            name={attraction.name}
-                          />
-                        </Pressable>
-                      );
-                    })
-                : null}
-            </VStack>
+                  return (
+                    <Pressable
+                      key={index}
+                      onPress={() =>
+                        navigation.navigate("Attraction", {
+                          id: currentAttraction.id,
+                          routeId: "AD122" // TODO: make dynamic
+                        })
+                      }
+                      bgColor="green.300"
+                      borderRadius={10}
+                      h="150px"
+                      w={multipleAttractions ? 56 : "100%"}
+                      px={2}
+                      py={4}
+                      mr={multipleAttractions ? 2 : 0}
+                    >
+                      <AttractionIcon
+                        attraction={currentAttraction.icon}
+                        name={currentAttraction.name}
+                      />
+                    </Pressable>
+                  );
+                })}
+              </ScrollView>
+            ) : null}
 
-            {stop.facilities ? (
+            {/* TODO: integrate back in a set height */}
+            {/* {stop.facilities ? (
               <Box mt={2}>
                 <Heading size="sm" mb={1}>
                   Facilities
@@ -134,7 +133,7 @@ export default function StopList({
                   Source: {stop.facilities.credit.displayName}
                 </Text>
               </Box>
-            ) : null}
+            ) : null} */}
           </Box>
         );
       })}

@@ -18,8 +18,12 @@ import type { BusStop } from "../data/busStops";
 import { stopsData } from "../data/busStops";
 import type { Attraction } from "../data/attractions";
 import { attractionData } from "../data/attractions";
+import type { RoutePoint } from "../data/routePoints";
+import { routePoints } from "../data/routePoints";
 import ProgressBar from "../components/ProgressBar";
 import StopList from "../components/StopList";
+import { busRoutes } from "../data/busRoutes";
+import { haversine } from "../util/haversine";
 
 type GuidebookScreenProps = NativeStackScreenProps<
   RootStackParamList,
@@ -40,12 +44,14 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Data import state
   const [stops, setStops] = useState<BusStop[]>();
   const [attractions, setAttractions] = useState<Attraction[]>();
+  const [points, setPoints] = useState<RoutePoint[]>();
 
   // Functional state
   const [direction, setDirection] = useState<Direction>(Direction.Outbound);
-  const [routePercentage, setRoutePercentage] = useState<number>(15); // TODO: make dynamic
-  const [lastStop, setLastStop] = useState<number>(4);
-  const [nextStop, setNextStop] = useState<number>(5);
+  const [nearestPoint, setNearestPoint] = useState<number>();
+  const [routePercentage, setRoutePercentage] = useState<number>(0);
+  const [lastStop, setLastStop] = useState<number>(0);
+  const [nextStop, setNextStop] = useState<number>(1);
 
   // Geolocation state
   const [geolocation, setGeolocation] = useState<Location.LocationObject>();
@@ -56,11 +62,13 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     setAttractions(
       attractionData.filter((busRoute) => busRoute.id === id)[0].attractions
     );
-  }, [stops, attractions]);
+    setPoints(routePoints.filter((busRoute) => busRoute.id === id)[0].points);
+  }, [stops, attractions, points]);
 
   /**
    * https://docs.expo.dev/versions/latest/sdk/location/#locationsubscription
    * https://chafikgharbi.com/expo-location-tracking/
+   * https://reactnavigation.org/docs/navigation-events/
    */
   useEffect(() => {
     navigation.addListener("focus", () => {
@@ -87,7 +95,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   }, [navigation]);
 
   const options: Location.LocationOptions = {
-    accuracy: Location.LocationAccuracy.BestForNavigation,
+    accuracy: Location.LocationAccuracy.High,
     distanceInterval: 10
   };
 
@@ -98,6 +106,35 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
       console.log("Subscription removed.");
     });
   }, [navigation]);
+
+  /**
+   * Calculate the nearest point and % travelled.
+   */
+  useEffect(() => {
+    if (!points || !geolocation) return;
+
+    const userLocation = {
+      lat: geolocation.coords.latitude,
+      long: geolocation.coords.longitude
+    };
+
+    let closetPoint: number = 1;
+    let lowestDistanceAway = Number.MAX_SAFE_INTEGER; // Sets as high as possible.
+
+    points.forEach((p) => {
+      let distanceAway = haversine(userLocation, { lat: p.lat, long: p.long });
+
+      if (distanceAway < lowestDistanceAway) {
+        lowestDistanceAway = distanceAway;
+        closetPoint = p.sequence;
+      }
+    });
+
+    setNearestPoint(closetPoint);
+
+    let percentageCompleted = (closetPoint / points.length) * 100;
+    setRoutePercentage(percentageCompleted);
+  }, [geolocation, points]);
 
   /**
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
@@ -146,6 +183,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
       <Text>{locationError ? locationError : "No Error"}</Text>
       <Text>{geolocation ? geolocation.timestamp : "None"}</Text>
+      <Text>{nearestPoint}</Text>
 
       <ScrollView mx={4} pb={4}>
         <Text pt={2}>
@@ -156,6 +194,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
           <StopList
             stops={stops}
             attractions={attractions}
+            geolocation={geolocation}
             lastStop={lastStop}
             nextStop={nextStop}
           />
