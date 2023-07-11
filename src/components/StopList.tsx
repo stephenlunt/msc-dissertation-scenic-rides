@@ -60,10 +60,6 @@ export default function StopList({
   return (
     <Flex flexDirection="column" flexShrink={1}>
       {stops.map((stop, index) => {
-        let multipleAttractions: boolean = stop.attractions
-          ? stop.attractions.length > 1
-          : false;
-
         return (
           <Box
             key={stop.sequence}
@@ -129,11 +125,14 @@ export default function StopList({
                 <Heading size="sm" mb={1}>
                   Facilities
                 </Heading>
-                <Flex direction="row" flexWrap="wrap">
+                <Flex direction="row" flexWrap="wrap" mb={1}>
                   {stop.facilities.allFacilities.map((f, i) => {
                     return <FacilityIcon key={i} facility={f} />;
                   })}
                 </Flex>
+                <Text fontSize="sm">
+                  Source: {stop.facilities.credit.displayName}
+                </Text>
               </Box>
             ) : null}
           </Box>

@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useEffect, useState, useCallback } from "react";
+import * as Location from "expo-location";
+import { useFocusEffect } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import {
   View,
@@ -29,6 +31,8 @@ enum Direction {
   Inbound = "Haltwhistle to Hexham"
 }
 
+let locationSubscription: Location.LocationSubscription | undefined;
+
 export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Navigation state
   const { id } = route.params;
@@ -43,12 +47,57 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   const [lastStop, setLastStop] = useState<number>(4);
   const [nextStop, setNextStop] = useState<number>(5);
 
-  useEffect(() => {
+  // Geolocation state
+  const [geolocation, setGeolocation] = useState<Location.LocationObject>();
+  const [locationError, setLocationError] = useState<string>();
+
+  useLayoutEffect(() => {
     setStops(stopsData.filter((busRoute) => busRoute.id === id)[0].stops);
     setAttractions(
       attractionData.filter((busRoute) => busRoute.id === id)[0].attractions
     );
   }, [stops, attractions]);
+
+  /**
+   * https://docs.expo.dev/versions/latest/sdk/location/#locationsubscription
+   * https://chafikgharbi.com/expo-location-tracking/
+   */
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      (async () => {
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== "granted") {
+          setLocationError("Showing static screen as location was denied");
+          return;
+        }
+
+        console.log(locationSubscription);
+
+        if (locationSubscription === undefined) {
+          locationSubscription = await Location.watchPositionAsync(
+            options,
+            (location) => {
+              console.log(location);
+              setGeolocation(location);
+            }
+          );
+        }
+      })();
+    });
+  }, [navigation]);
+
+  const options: Location.LocationOptions = {
+    accuracy: Location.LocationAccuracy.BestForNavigation,
+    distanceInterval: 10
+  };
+
+  useEffect(() => {
+    navigation.addListener("blur", () => {
+      locationSubscription?.remove();
+      locationSubscription = undefined;
+      console.log("Subscription removed.");
+    });
+  }, [navigation]);
 
   /**
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
@@ -94,6 +143,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
           onPress={swapDirection}
         />
       </Flex>
+
+      <Text>{locationError ? locationError : "No Error"}</Text>
+      <Text>{geolocation ? geolocation.timestamp : "None"}</Text>
 
       <ScrollView mx={4} pb={4}>
         <Text pt={2}>

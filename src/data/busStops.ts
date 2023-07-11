@@ -41,8 +41,7 @@ export const stopsData: Route[] = [
         name: "Hexham Railway Station",
         lat: 54.973015,
         long: -2.094787,
-        details:
-          "Depart here for trains towards Newcastle upon Tyne and Carlisle.",
+        details: "Rail connections towards Newcastle upon Tyne and Carlisle.",
         facilities: {
           allFacilities: [Facility.Toilets, Facility.CarPark],
           credit: {
@@ -61,7 +60,14 @@ export const stopsData: Route[] = [
         sequence: 4,
         name: "Hadrian Hotel",
         lat: 55.01474799999999,
-        long: -2.132744999999999
+        long: -2.132744999999999,
+        facilities: {
+          allFacilities: [Facility.Hotel],
+          credit: {
+            displayName: "...",
+            src: "..."
+          }
+        }
       },
       {
         sequence: 5,
@@ -74,7 +80,14 @@ export const stopsData: Route[] = [
         sequence: 6,
         name: "George Hotel",
         lat: 55.02964799999999,
-        long: -2.129195
+        long: -2.129195,
+        facilities: {
+          allFacilities: [Facility.Hotel],
+          credit: {
+            displayName: "...",
+            src: "..."
+          }
+        }
       },
       {
         sequence: 7,
@@ -129,7 +142,14 @@ export const stopsData: Route[] = [
         sequence: 14,
         name: "Herding Hill Farm Camp Site",
         lat: 54.98164699999999,
-        long: -2.448778
+        long: -2.448778,
+        facilities: {
+          allFacilities: [Facility.Camping],
+          credit: {
+            displayName: "...",
+            src: "..."
+          }
+        }
       },
       {
         sequence: 15,
@@ -141,13 +161,22 @@ export const stopsData: Route[] = [
         sequence: 16,
         name: "Haltwhistle Railway Station",
         lat: 54.968403,
-        long: -2.463063
+        long: -2.463063,
+        details:
+          "Rail connections towards Newcastle upon Tyne and Carlisle, including Hexham."
       },
       {
         sequence: 17,
         name: "Greenhead Hotel",
         lat: 54.981911,
-        long: -2.533252000000001
+        long: -2.533252000000001,
+        facilities: {
+          allFacilities: [Facility.Hotel],
+          credit: {
+            displayName: "...",
+            src: "..."
+          }
+        }
       },
       {
         sequence: 18,

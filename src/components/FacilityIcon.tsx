@@ -1,9 +1,12 @@
+import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Flex, Text } from "native-base";
 
 export enum Facility {
   Toilets = "Toilets",
-  CarPark = "Car Park"
+  CarPark = "Car Park",
+  Camping = "Camping",
+  Hotel = "Hotel"
 }
 
 type Props = { facility: Facility };
@@ -32,6 +35,10 @@ function IconSwitcher({ facility }: Props) {
       return <MaterialCommunityIcons name="toilet" size={24} color="black" />;
     case Facility.CarPark:
       return <MaterialCommunityIcons name="parking" size={24} color="black" />;
+    case Facility.Camping:
+      return <MaterialCommunityIcons name="campfire" size={24} color="black" />;
+    case Facility.Hotel:
+      return <MaterialIcons name="hotel" size={24} color="black" />;
     default:
       return (
         <MaterialCommunityIcons
