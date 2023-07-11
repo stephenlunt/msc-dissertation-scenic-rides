@@ -28,37 +28,11 @@ type Props = {
   stops: BusStop[];
   attractions: Attraction[];
   geolocation: LocationObject | undefined;
-  lastStop: number;
-  nextStop: number;
 };
 
-export default function StopList({
-  stops,
-  attractions,
-  geolocation,
-  lastStop,
-  nextStop
-}: Props) {
+export default function StopList({ stops, attractions, geolocation }: Props) {
   // https://reactnavigation.org/docs/connecting-navigation-prop/
   const navigation = useNavigation<StopListComponentProp>();
-
-  useEffect(() => {
-    if (stops && geolocation) {
-      const pointA = {
-        lat: geolocation?.coords.latitude,
-        long: geolocation?.coords.longitude
-      };
-
-      const pointB = {
-        lat: stops!.at(nextStop)!.lat,
-        long: stops!.at(nextStop)!.long
-      };
-
-      console.log(pointA, pointB);
-
-      console.log(haversine(pointA, pointB));
-    }
-  }, [stops, geolocation, lastStop, nextStop]);
 
   return (
     <Flex flexDirection="column" flexShrink={1}>
@@ -70,22 +44,18 @@ export default function StopList({
         return (
           <Box
             key={stop.sequence}
-            mb={8}
+            mb={4}
             h="230px"
             borderBottomColor="borderColor"
             borderBottomWidth={1}
           >
             <Heading pb={2}>{stop.name}</Heading>
             <Badge colorScheme="info" width="20" mb={2}>{`STOP ${
-              stop.sequence + 1
+              index + 1
             }`}</Badge>
-            {stop.details && <Text>{stop.details}</Text>}
 
             {stop.attractions ? (
-              <ScrollView
-                horizontal={multipleAttractions ? true : false}
-                mb={2}
-              >
+              <ScrollView horizontal={multipleAttractions ? true : false}>
                 {stop.attractions.map((attractionId, index) => {
                   let currentAttraction = attractions.filter(
                     (attraction) => attraction.id === attractionId
@@ -116,7 +86,11 @@ export default function StopList({
                   );
                 })}
               </ScrollView>
-            ) : null}
+            ) : (
+              <Box bgColor="gray.200" borderRadius={10} h="150px" px={2} py={4}>
+                {stop.details}
+              </Box>
+            )}
 
             {/* TODO: integrate back in a set height */}
             {/* {stop.facilities ? (

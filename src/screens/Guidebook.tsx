@@ -1,6 +1,5 @@
-import { useLayoutEffect, useEffect, useState, useCallback } from "react";
+import { useLayoutEffect, useEffect, useState } from "react";
 import * as Location from "expo-location";
-import { useFocusEffect } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import {
   View,
@@ -50,8 +49,8 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   const [direction, setDirection] = useState<Direction>(Direction.Outbound);
   const [nearestPoint, setNearestPoint] = useState<number>();
   const [routePercentage, setRoutePercentage] = useState<number>(0);
-  const [lastStop, setLastStop] = useState<number>(0);
-  const [nextStop, setNextStop] = useState<number>(1);
+  const [lastStop, setLastStop] = useState<BusStop>();
+  const [nextStop, setNextStop] = useState<BusStop>();
 
   // Geolocation state
   const [geolocation, setGeolocation] = useState<Location.LocationObject>();
@@ -131,10 +130,43 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     });
 
     setNearestPoint(closetPoint);
-
-    let percentageCompleted = (closetPoint / points.length) * 100;
-    setRoutePercentage(percentageCompleted);
   }, [geolocation, points]);
+
+  useEffect(() => {
+    if (!stops || !nearestPoint) return;
+
+    for (let i = 0; i < stops.length; i++) {
+      if (
+        nearestPoint >= stops[i].nearestPoint &&
+        nearestPoint < stops[i + 1].nearestPoint
+      ) {
+        setLastStop(stops[i]);
+        setNextStop(stops[i + 1]);
+
+        console.log(stops[i].sequence, stops[i + 1].sequence);
+      }
+    }
+  }, [stops, nearestPoint]);
+
+  useEffect(() => {
+    const BASE_STYLE_ADJUSTMENT = 1;
+
+    if (!lastStop || !nextStop || !nearestPoint) return;
+
+    const stopsDivider = stops!.length;
+    let stopDifferenceInPoints = nextStop.nearestPoint - lastStop.nearestPoint;
+
+    let intermediatePercent =
+      (((nearestPoint - lastStop.nearestPoint) / stopDifferenceInPoints) *
+        100) /
+      stopsDivider;
+
+    let basePercent = (lastStop.sequence / stopsDivider) * 100;
+
+    setRoutePercentage(
+      basePercent + intermediatePercent + BASE_STYLE_ADJUSTMENT
+    );
+  }, [lastStop, nextStop, nearestPoint]);
 
   /**
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
@@ -183,7 +215,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
       <Text>{locationError ? locationError : "No Error"}</Text>
       <Text>{geolocation ? geolocation.timestamp : "None"}</Text>
-      <Text>{nearestPoint}</Text>
+      <Text>
+        Near: {nearestPoint}, % = {routePercentage}
+      </Text>
 
       <ScrollView mx={4} pb={4}>
         <Text pt={2}>
@@ -195,8 +229,6 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
             stops={stops}
             attractions={attractions}
             geolocation={geolocation}
-            lastStop={lastStop}
-            nextStop={nextStop}
           />
         </Flex>
       </ScrollView>

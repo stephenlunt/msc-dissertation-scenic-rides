@@ -11,6 +11,7 @@ export type BusStop = {
   name: string;
   lat: number;
   long: number;
+  nearestPoint: number;
   details?: string;
   facilities?: Facilities;
   attractions?: number[];
@@ -34,6 +35,7 @@ export const stopsData: Route[] = [
         name: "Hexham Bus Station",
         lat: 54.97032110000001,
         long: -2.0958298,
+        nearestPoint: 1,
         attractions: [0]
       },
       {
@@ -41,6 +43,7 @@ export const stopsData: Route[] = [
         name: "Hexham Railway Station",
         lat: 54.973015,
         long: -2.094787,
+        nearestPoint: 7,
         details: "Rail connections towards Newcastle upon Tyne and Carlisle.",
         facilities: {
           allFacilities: [Facility.Toilets, Facility.CarPark],
@@ -54,13 +57,15 @@ export const stopsData: Route[] = [
         sequence: 2,
         name: "Acomb Garage",
         lat: 54.98994399999999,
-        long: -2.115331
+        long: -2.115331,
+        nearestPoint: 29
       },
       {
         sequence: 3,
         name: "Hadrian Hotel",
         lat: 55.01474799999999,
         long: -2.132744999999999,
+        nearestPoint: 49,
         facilities: {
           allFacilities: [Facility.Hotel],
           credit: {
@@ -74,6 +79,7 @@ export const stopsData: Route[] = [
         name: "Brunton Crossroads",
         lat: 55.025692,
         long: -2.124615,
+        nearestPoint: 56,
         attractions: [1, 2, 3]
       },
       {
@@ -81,6 +87,7 @@ export const stopsData: Route[] = [
         name: "George Hotel",
         lat: 55.02964799999999,
         long: -2.129195,
+        nearestPoint: 59,
         facilities: {
           allFacilities: [Facility.Hotel],
           credit: {
@@ -94,6 +101,7 @@ export const stopsData: Route[] = [
         name: "Chesters Roman Fort",
         lat: 55.028831,
         long: -2.138062,
+        nearestPoint: 62,
         attractions: [4]
       },
       {
@@ -101,6 +109,7 @@ export const stopsData: Route[] = [
         name: "Brocolitia Roman Fort",
         lat: 55.0356873,
         long: -2.2204436,
+        nearestPoint: 94,
         attractions: [5]
       },
       {
@@ -108,6 +117,7 @@ export const stopsData: Route[] = [
         name: "Housesteads Visitor Centre",
         lat: 55.01002099999999,
         long: -2.323052000000001,
+        nearestPoint: 175,
         attractions: [6]
       },
       {
@@ -115,6 +125,7 @@ export const stopsData: Route[] = [
         name: "The Sill",
         lat: 54.995895,
         long: -2.38804,
+        nearestPoint: 234,
         attractions: [7]
       },
       {
@@ -122,6 +133,7 @@ export const stopsData: Route[] = [
         name: "Vindolanda",
         lat: 54.995895,
         long: -2.38804,
+        nearestPoint: 279,
         attractions: [8]
       },
       {
@@ -129,6 +141,7 @@ export const stopsData: Route[] = [
         name: "The Sill (Return)",
         lat: 54.995895,
         long: -2.38804,
+        nearestPoint: 316,
         attractions: [7]
       },
       {
@@ -136,6 +149,7 @@ export const stopsData: Route[] = [
         name: "Milecastle Inn",
         lat: 54.987782,
         long: -2.445705,
+        nearestPoint: 359,
         attractions: [9]
       },
       {
@@ -143,6 +157,7 @@ export const stopsData: Route[] = [
         name: "Herding Hill Farm Camp Site",
         lat: 54.98164699999999,
         long: -2.448778,
+        nearestPoint: 368,
         facilities: {
           allFacilities: [Facility.Camping],
           credit: {
@@ -155,13 +170,15 @@ export const stopsData: Route[] = [
         sequence: 14,
         name: "Haltwhistle Market Place",
         lat: 54.97043189999999,
-        long: -2.458997799999999
+        long: -2.458997799999999,
+        nearestPoint: 391
       },
       {
         sequence: 15,
         name: "Haltwhistle Railway Station",
         lat: 54.968403,
         long: -2.463063,
+        nearestPoint: 397,
         details:
           "Rail connections towards Newcastle upon Tyne and Carlisle, including Hexham."
       },
@@ -170,6 +187,7 @@ export const stopsData: Route[] = [
         name: "Greenhead Hotel",
         lat: 54.981911,
         long: -2.533252000000001,
+        nearestPoint: 431,
         facilities: {
           allFacilities: [Facility.Hotel],
           credit: {
@@ -183,6 +201,7 @@ export const stopsData: Route[] = [
         name: "Walltown Quarry",
         lat: 54.986729,
         long: -2.520126,
+        nearestPoint: 442,
         attractions: [10, 11]
       }
     ]
