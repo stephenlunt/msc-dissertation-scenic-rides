@@ -21,7 +21,7 @@ export default function ProgressBar({ percentage }: Props) {
   }, [percentage]);
 
   return (
-    <Box position="relative" height="full" width={7} mr={2}>
+    <Box position="relative" height="full" width={7} mx={2}>
       <Flex
         position="absolute"
         left={3}

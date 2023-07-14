@@ -14,7 +14,7 @@ export type BusRoute = {
   frequency: string;
 };
 
-export const busRoutes: BusRoute[] = [
+export const busRoutesData: BusRoute[] = [
   {
     id: "AD122",
     name: "Hexham to Haltwhistle",

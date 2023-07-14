@@ -35,7 +35,7 @@ export default function StopList({ stops, attractions, geolocation }: Props) {
   const navigation = useNavigation<StopListComponentProp>();
 
   return (
-    <Flex flexDirection="column" flexShrink={1}>
+    <Flex flexDirection="column" flexShrink={1} mr={4}>
       {stops.map((stop, index) => {
         let multipleAttractions: boolean = stop.attractions
           ? stop.attractions.length > 1

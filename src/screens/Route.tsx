@@ -4,7 +4,7 @@ import { ScrollView, Box, Heading, Text, Pressable, Image } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import type { BusRoute } from "../data/busRoutes";
-import { busRoutes } from "../data/busRoutes";
+import { busRoutesData } from "../data/busRoutes";
 
 /**
  * https://reactnavigation.org/docs/typescript/
@@ -16,7 +16,7 @@ export default function Route({ route, navigation }: RouteScreenProps) {
   const [routeDetails, setRouteDetails] = useState<BusRoute>();
 
   useLayoutEffect(() => {
-    setRouteDetails(busRoutes.filter((busRoute) => busRoute.id === id)[0]);
+    setRouteDetails(busRoutesData.filter((busRoute) => busRoute.id === id)[0]);
   }, []);
 
   return routeDetails ? (

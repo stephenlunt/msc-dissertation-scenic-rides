@@ -1,15 +1,8 @@
-import { useLayoutEffect, useEffect, useState } from "react";
+import { useLayoutEffect, useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import {
-  View,
-  ScrollView,
-  Flex,
-  Box,
-  Text,
-  Heading,
-  IconButton
-} from "native-base";
+import { ScrollView } from "react-native";
+import { View, Flex, Box, Text, Heading, IconButton } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
@@ -21,7 +14,7 @@ import type { RoutePoint } from "../data/routePoints";
 import { routePoints } from "../data/routePoints";
 import ProgressBar from "../components/ProgressBar";
 import StopList from "../components/StopList";
-import { busRoutes } from "../data/busRoutes";
+import { busRoutesData } from "../data/busRoutes";
 import { haversine } from "../util/haversine";
 
 type GuidebookScreenProps = NativeStackScreenProps<
@@ -29,6 +22,7 @@ type GuidebookScreenProps = NativeStackScreenProps<
   "Guidebook"
 >;
 
+// TODO: This shouldn't be static!
 enum Direction {
   Outbound = "Hexham to Haltwhistle",
   Inbound = "Haltwhistle to Hexham"
@@ -55,6 +49,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Geolocation state
   const [geolocation, setGeolocation] = useState<Location.LocationObject>();
   const [locationError, setLocationError] = useState<string>();
+
+  // Refs
+  const scrollViewRef = useRef<null | ScrollView>(null);
 
   useLayoutEffect(() => {
     setStops(stopsData.filter((busRoute) => busRoute.id === id)[0].stops);
@@ -136,6 +133,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     if (!stops || !nearestPoint) return;
 
     for (let i = 0; i < stops.length; i++) {
+      // TODO: this causes an index out of bounds error
       if (
         nearestPoint >= stops[i].nearestPoint &&
         nearestPoint < stops[i + 1].nearestPoint
@@ -166,6 +164,15 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     setRoutePercentage(
       basePercent + intermediatePercent + BASE_STYLE_ADJUSTMENT
     );
+
+    /**
+     * https://reactnative.dev/docs/scrollview#scrollto
+     */
+    if (!scrollViewRef.current) return;
+
+    let scrollHeight = lastStop.sequence * 230; // Fixed pixel height
+
+    scrollViewRef.current!.scrollTo({ y: scrollHeight, animated: true });
   }, [lastStop, nextStop, nearestPoint]);
 
   /**
@@ -199,7 +206,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         justifyContent="space-between"
       >
         <Heading my="auto" textAlign="center">
-          {direction}
+          {direction == Direction.Outbound
+            ? `Origin to Destination`
+            : `Destination to Origin`}
         </Heading>
         <IconButton
           icon={
@@ -213,14 +222,8 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         />
       </Flex>
 
-      <Text>{locationError ? locationError : "No Error"}</Text>
-      <Text>{geolocation ? geolocation.timestamp : "None"}</Text>
-      <Text>
-        Near: {nearestPoint}, % = {routePercentage}
-      </Text>
-
-      <ScrollView mx={4} pb={4}>
-        <Text pt={2}>
+      <ScrollView ref={scrollViewRef}>
+        <Text pt={2} mx={4}>
           Explore what the {id} has to offer at every stop along the route.
         </Text>
         <Flex flexDirection="row" my={4}>
