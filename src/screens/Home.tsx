@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { ScrollView, Pressable, Box, Text } from "native-base";
+import { ScrollView, Pressable, Box, Text, Link } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import type { BusRoute } from "../data/busRoutes";
@@ -40,14 +40,17 @@ export default function Home() {
               >
                 <ImageCard
                   height={280}
-                  imgSrc={busRoute.imgSrc}
+                  imgSrc={busRoute.image.imgSrc}
                   imgAlt={`Image of ${busRoute.name}`}
                   heading={busRoute.id}
                   innerText={busRoute.name}
                 />
               </Pressable>
               <Text fontSize="sm" color="gray.700">
-                Image Credit: Go North East
+                Image Credit:{" "}
+                <Link href={busRoute.image.linkingUrl}>
+                  {busRoute.image.displayText}
+                </Link>
               </Text>
             </Box>
           );

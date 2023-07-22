@@ -3,10 +3,7 @@
  * https://en.wikipedia.org/wiki/Haversine_formula
  */
 
-type Coordinate = {
-  lat: number;
-  long: number;
-};
+import type { Coordinate } from "../data/types";
 
 export function haversine(pointA: Coordinate, pointB: Coordinate): number {
   const R = 6371e3;

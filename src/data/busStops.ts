@@ -1,4 +1,5 @@
 import { Facility } from "../components/FacilityIcon";
+import { Credit } from "./types";
 
 type Route = {
   id: string;
@@ -19,10 +20,7 @@ export type BusStop = {
 
 type Facilities = {
   allFacilities: Facility[];
-  credit: {
-    displayName: string;
-    src: string;
-  };
+  credit: Credit;
 };
 
 export const stopsData: Route[] = [
@@ -48,8 +46,8 @@ export const stopsData: Route[] = [
         facilities: {
           allFacilities: [Facility.Toilets, Facility.CarPark],
           credit: {
-            displayName: "Northern Rail",
-            src: "https://www.northernrailway.co.uk/stations/hexham"
+            displayText: "Northern Rail",
+            linkingUrl: "https://www.northernrailway.co.uk/stations/hexham"
           }
         }
       },
@@ -69,8 +67,8 @@ export const stopsData: Route[] = [
         facilities: {
           allFacilities: [Facility.Hotel],
           credit: {
-            displayName: "...",
-            src: "..."
+            displayText: "...",
+            linkingUrl: "..."
           }
         }
       },
@@ -91,8 +89,8 @@ export const stopsData: Route[] = [
         facilities: {
           allFacilities: [Facility.Hotel],
           credit: {
-            displayName: "...",
-            src: "..."
+            displayText: "...",
+            linkingUrl: "..."
           }
         }
       },
@@ -161,8 +159,8 @@ export const stopsData: Route[] = [
         facilities: {
           allFacilities: [Facility.Camping],
           credit: {
-            displayName: "...",
-            src: "..."
+            displayText: "...",
+            linkingUrl: "..."
           }
         }
       },
@@ -191,8 +189,8 @@ export const stopsData: Route[] = [
         facilities: {
           allFacilities: [Facility.Hotel],
           credit: {
-            displayName: "...",
-            src: "..."
+            displayText: "...",
+            linkingUrl: "..."
           }
         }
       },

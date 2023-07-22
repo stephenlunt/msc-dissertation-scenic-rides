@@ -1,10 +1,19 @@
 import { useLayoutEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ScrollView, Box, Heading, Text, Pressable, Image } from "native-base";
+import {
+  ScrollView,
+  Box,
+  Heading,
+  Text,
+  Pressable,
+  Image,
+  Link
+} from "native-base";
 
 import { RootStackParamList } from "../../App";
 import type { BusRoute } from "../data/busRoutes";
 import { busRoutesData } from "../data/busRoutes";
+import CreditFooter from "../components/CreditFooter";
 
 /**
  * https://reactnavigation.org/docs/typescript/
@@ -24,7 +33,6 @@ export default function Route({ route, navigation }: RouteScreenProps) {
       <Heading py={4} textAlign="center">
         {routeDetails.name}
       </Heading>
-      <Text pb={4}>{routeDetails.description}</Text>
 
       <Pressable
         onPress={() =>
@@ -37,7 +45,6 @@ export default function Route({ route, navigation }: RouteScreenProps) {
         alignItems="center"
         justifyContent="space-between"
         borderRadius={10}
-        my={2}
         p={4}
       >
         <Box width="50%">
@@ -54,8 +61,22 @@ export default function Route({ route, navigation }: RouteScreenProps) {
         />
       </Pressable>
 
-      <Heading textAlign="center">Credit</Heading>
-      <Text>Information for this route was sourced from: ...</Text>
+      <Heading pt={4} pb={2}>
+        About the route
+      </Heading>
+      <Text>{routeDetails.description}</Text>
+
+      <Heading pt={4} pb={2}>
+        Timetable
+      </Heading>
+      <Text>
+        This bus runs: {routeDetails.frequency} View the full timetable at:{" "}
+        <Link href={routeDetails.timetable.linkingUrl}>
+          {routeDetails.timetable.displayText}
+        </Link>
+      </Text>
+
+      <CreditFooter credits={routeDetails.credits} />
     </ScrollView>
   ) : (
     <Box>Invalid bus route</Box>

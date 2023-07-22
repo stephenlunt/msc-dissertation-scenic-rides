@@ -19,7 +19,7 @@ export type RootStackParamList = {
   Route: { id: string };
   Guidebook: { id: string };
   Attraction: { id: number; routeId: string };
-  Stop: {id: number }
+  Stop: { id: number };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

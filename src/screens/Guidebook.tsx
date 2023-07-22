@@ -6,6 +6,7 @@ import { View, Flex, Box, Text, Heading, IconButton } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
+import { STOP_HEIGHT, IMAGE_HEIGHT } from "../const";
 import type { BusStop } from "../data/busStops";
 import { stopsData } from "../data/busStops";
 import type { Attraction } from "../data/attractions";
@@ -170,7 +171,8 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
      */
     if (!scrollViewRef.current) return;
 
-    let scrollHeight = lastStop.sequence * 230; // Fixed pixel height
+    // Calculate the scroll height using the fixed pixel height of the stop / attraction cards.
+    let scrollHeight = lastStop.sequence * STOP_HEIGHT;
 
     scrollViewRef.current!.scrollTo({ y: scrollHeight, animated: true });
   }, [lastStop, nextStop, nearestPoint]);
@@ -229,6 +231,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         <Flex flexDirection="row" my={4}>
           <ProgressBar percentage={routePercentage} />
           <StopList
+            routeId={id}
             stops={stops}
             attractions={attractions}
             geolocation={geolocation}

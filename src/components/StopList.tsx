@@ -4,15 +4,16 @@ import {
   Flex,
   Box,
   Heading,
-  Text,
   Pressable,
   ScrollView,
-  Badge
+  Badge,
+  Image
 } from "native-base";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 
 import { RootStackParamList } from "../../App";
+import { STOP_HEIGHT, IMAGE_HEIGHT } from "../const";
 import { BusStop } from "../data/busStops";
 import { Attraction } from "../data/attractions";
 import { haversine } from "../util/haversine";
@@ -25,12 +26,18 @@ type StopListComponentProp = NativeStackNavigationProp<
 >;
 
 type Props = {
+  routeId: string;
   stops: BusStop[];
   attractions: Attraction[];
   geolocation: LocationObject | undefined;
 };
 
-export default function StopList({ stops, attractions, geolocation }: Props) {
+export default function StopList({
+  routeId,
+  stops,
+  attractions,
+  geolocation
+}: Props) {
   // https://reactnavigation.org/docs/connecting-navigation-prop/
   const navigation = useNavigation<StopListComponentProp>();
 
@@ -45,7 +52,7 @@ export default function StopList({ stops, attractions, geolocation }: Props) {
           <Box
             key={stop.sequence}
             mb={4}
-            h="230px"
+            h={`${STOP_HEIGHT}px`}
             borderBottomColor="borderColor"
             borderBottomWidth={1}
           >
@@ -67,27 +74,49 @@ export default function StopList({ stops, attractions, geolocation }: Props) {
                       onPress={() =>
                         navigation.navigate("Attraction", {
                           id: currentAttraction.id,
-                          routeId: "AD122" // TODO: make dynamic
+                          routeId: routeId
                         })
                       }
                       bgColor="green.300"
+                      position="relative"
                       borderRadius={10}
-                      h="150px"
-                      w={multipleAttractions ? 56 : "100%"}
-                      px={2}
-                      py={4}
+                      h={`${IMAGE_HEIGHT}px`}
+                      w={multipleAttractions ? 64 : "100%"}
                       mr={multipleAttractions ? 2 : 0}
                     >
-                      <AttractionIcon
-                        attraction={currentAttraction.icon}
-                        name={currentAttraction.name}
+                      <Image
+                        source={currentAttraction.image?.imgSrc}
+                        alt={`Photo of ${currentAttraction.name}`}
+                        h={`${IMAGE_HEIGHT}px`}
+                        borderRadius={10}
+                        resizeMode="cover"
                       />
+                      <Box
+                        position="absolute"
+                        zIndex={10}
+                        bottom={0}
+                        width="100%"
+                        p={2}
+                        backgroundColor="transparentBlack"
+                        borderBottomRadius={10}
+                      >
+                        <AttractionIcon
+                          attraction={currentAttraction.icon}
+                          name={currentAttraction.name}
+                        />
+                      </Box>
                     </Pressable>
                   );
                 })}
               </ScrollView>
             ) : (
-              <Box bgColor="gray.200" borderRadius={10} h="150px" px={2} py={4}>
+              <Box
+                bgColor="backdrop"
+                borderRadius={10}
+                h={`${IMAGE_HEIGHT}px`}
+                px={2}
+                py={4}
+              >
                 {stop.details}
               </Box>
             )}

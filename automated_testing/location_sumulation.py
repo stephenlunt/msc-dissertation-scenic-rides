@@ -5,7 +5,7 @@ import time
 
 
 @dataclass
-class Point:
+class Coordinate:
     """
     Class containing a latitude and longitude point. Float representation is not
     required as the value is only copy/pasted in this program.
@@ -34,12 +34,12 @@ def read_in_file() -> list:
         reader = csv.DictReader(csvfile)
 
         for row in reader:
-            route_points.append(Point(row["lat"], row["long"]))
+            route_points.append(Coordinate(row["lat"], row["long"]))
 
     return route_points
 
 
-def input_on_screen(point: Point) -> None:
+def input_on_screen(point: Coordinate) -> None:
     pyautogui.click(x=355, y=8)
     pyautogui.click(x=415, y=285)
     pyautogui.click(x=605, y=307)
