@@ -29,9 +29,7 @@ export default function Home() {
           return (
             <Box key={busRoute.id}>
               <Pressable
-                onPress={() =>
-                  navigation.navigate("Route", { id: busRoute.id })
-                }
+                onPress={() => navigation.navigate("Route", { id: busRoute.id })}
                 position="relative"
                 overflow="hidden"
                 height={280}
@@ -47,10 +45,7 @@ export default function Home() {
                 />
               </Pressable>
               <Text fontSize="sm" color="gray.700">
-                Image Credit:{" "}
-                <Link href={busRoute.image.linkingUrl}>
-                  {busRoute.image.displayText}
-                </Link>
+                Image Credit: <Link href={busRoute.image.linkingUrl}>{busRoute.image.displayText}</Link>
               </Text>
             </Box>
           );

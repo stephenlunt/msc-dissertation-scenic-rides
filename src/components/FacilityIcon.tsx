@@ -40,12 +40,6 @@ function IconSwitcher({ facility }: Props) {
     case Facility.Hotel:
       return <MaterialIcons name="hotel" size={24} color="black" />;
     default:
-      return (
-        <MaterialCommunityIcons
-          name="alert-circle-outline"
-          size={24}
-          color="black"
-        />
-      );
+      return <MaterialCommunityIcons name="alert-circle-outline" size={24} color="black" />;
   }
 }

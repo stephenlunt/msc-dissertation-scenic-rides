@@ -22,14 +22,7 @@ export default function ProgressBar({ percentage }: Props) {
 
   return (
     <Box position="relative" height="full" width={7} mx={2}>
-      <Flex
-        position="absolute"
-        left={3}
-        bgColor="gray.200"
-        height="full"
-        width={2}
-        borderRadius={10}
-      />
+      <Flex position="absolute" left={3} bgColor="gray.200" height="full" width={2} borderRadius={10} />
       <Flex
         position="absolute"
         left={3}

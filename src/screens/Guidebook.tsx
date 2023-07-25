@@ -18,10 +18,7 @@ import StopList from "../components/StopList";
 import { busRoutesData } from "../data/busRoutes";
 import { haversine } from "../util/haversine";
 
-type GuidebookScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  "Guidebook"
->;
+type GuidebookScreenProps = NativeStackScreenProps<RootStackParamList, "Guidebook">;
 
 // TODO: This shouldn't be static!
 enum Direction {
@@ -56,9 +53,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
   useLayoutEffect(() => {
     setStops(stopsData.filter((busRoute) => busRoute.id === id)[0].stops);
-    setAttractions(
-      attractionData.filter((busRoute) => busRoute.id === id)[0].attractions
-    );
+    setAttractions(attractionData.filter((busRoute) => busRoute.id === id)[0].attractions);
     setPoints(routePoints.filter((busRoute) => busRoute.id === id)[0].points);
   }, [stops, attractions, points]);
 
@@ -79,13 +74,10 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         console.log(locationSubscription);
 
         if (locationSubscription === undefined) {
-          locationSubscription = await Location.watchPositionAsync(
-            options,
-            (location) => {
-              console.log(location);
-              setGeolocation(location);
-            }
-          );
+          locationSubscription = await Location.watchPositionAsync(options, (location) => {
+            console.log(location);
+            setGeolocation(location);
+          });
         }
       })();
     });
@@ -135,10 +127,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
     for (let i = 0; i < stops.length; i++) {
       // TODO: this causes an index out of bounds error
-      if (
-        nearestPoint >= stops[i].nearestPoint &&
-        nearestPoint < stops[i + 1].nearestPoint
-      ) {
+      if (nearestPoint >= stops[i].nearestPoint && nearestPoint < stops[i + 1].nearestPoint) {
         setLastStop(stops[i]);
         setNextStop(stops[i + 1]);
 
@@ -155,16 +144,11 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     const stopsDivider = stops!.length;
     let stopDifferenceInPoints = nextStop.nearestPoint - lastStop.nearestPoint;
 
-    let intermediatePercent =
-      (((nearestPoint - lastStop.nearestPoint) / stopDifferenceInPoints) *
-        100) /
-      stopsDivider;
+    let intermediatePercent = (((nearestPoint - lastStop.nearestPoint) / stopDifferenceInPoints) * 100) / stopsDivider;
 
     let basePercent = (lastStop.sequence / stopsDivider) * 100;
 
-    setRoutePercentage(
-      basePercent + intermediatePercent + BASE_STYLE_ADJUSTMENT
-    );
+    setRoutePercentage(basePercent + intermediatePercent + BASE_STYLE_ADJUSTMENT);
 
     /**
      * https://reactnative.dev/docs/scrollview#scrollto
@@ -183,15 +167,11 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   function swapDirection() {
     if (direction === Direction.Inbound) {
       setDirection(Direction.Outbound);
-      const orderStops = stops?.sort(
-        (stopA, stopB) => stopA.sequence - stopB.sequence
-      );
+      const orderStops = stops?.sort((stopA, stopB) => stopA.sequence - stopB.sequence);
       setStops(orderStops);
     } else {
       setDirection(Direction.Inbound);
-      const orderStops = stops?.sort(
-        (stopA, stopB) => stopB.sequence - stopA.sequence
-      );
+      const orderStops = stops?.sort((stopA, stopB) => stopB.sequence - stopA.sequence);
       setStops(orderStops);
     }
   }
@@ -208,18 +188,10 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         justifyContent="space-between"
       >
         <Heading my="auto" textAlign="center">
-          {direction == Direction.Outbound
-            ? `Origin to Destination`
-            : `Destination to Origin`}
+          {direction == Direction.Outbound ? `Origin to Destination` : `Destination to Origin`}
         </Heading>
         <IconButton
-          icon={
-            <MaterialCommunityIcons
-              name="swap-horizontal-variant"
-              size={24}
-              color="black"
-            />
-          }
+          icon={<MaterialCommunityIcons name="swap-horizontal-variant" size={24} color="black" />}
           onPress={swapDirection}
         />
       </Flex>
@@ -230,12 +202,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         </Text>
         <Flex flexDirection="row" my={4}>
           <ProgressBar percentage={routePercentage} />
-          <StopList
-            routeId={id}
-            stops={stops}
-            attractions={attractions}
-            geolocation={geolocation}
-          />
+          <StopList routeId={id} stops={stops} attractions={attractions} geolocation={geolocation} />
         </Flex>
       </ScrollView>
     </View>

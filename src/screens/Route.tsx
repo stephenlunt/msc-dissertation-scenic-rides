@@ -1,14 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import {
-  ScrollView,
-  Box,
-  Heading,
-  Text,
-  Pressable,
-  Image,
-  Link
-} from "native-base";
+import { ScrollView, Box, Heading, Text, Pressable, Image, Link } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import type { BusRoute } from "../data/busRoutes";
@@ -35,9 +27,7 @@ export default function Route({ route, navigation }: RouteScreenProps) {
       </Heading>
 
       <Pressable
-        onPress={() =>
-          navigation.navigate("Guidebook", { id: routeDetails.id })
-        }
+        onPress={() => navigation.navigate("Guidebook", { id: routeDetails.id })}
         height={180}
         bgColor="green.300"
         display="flex"
@@ -71,9 +61,7 @@ export default function Route({ route, navigation }: RouteScreenProps) {
       </Heading>
       <Text>
         This bus runs: {routeDetails.frequency} View the full timetable at:{" "}
-        <Link href={routeDetails.timetable.linkingUrl}>
-          {routeDetails.timetable.displayText}
-        </Link>
+        <Link href={routeDetails.timetable.linkingUrl}>{routeDetails.timetable.displayText}</Link>
       </Text>
 
       <CreditFooter credits={routeDetails.credits} />

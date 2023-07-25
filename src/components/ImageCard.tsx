@@ -9,31 +9,12 @@ type Props = {
   innerText?: string;
 };
 
-export default function ImageCard({
-  imgSrc,
-  imgAlt,
-  heading,
-  innerText,
-  height
-}: Props) {
+export default function ImageCard({ imgSrc, imgAlt, heading, innerText, height }: Props) {
   return (
     <>
-      <Image
-        source={imgSrc}
-        alt={imgAlt}
-        maxWidth={360}
-        maxHeight={height}
-        borderRadius={10}
-      />
+      <Image source={imgSrc} alt={imgAlt} maxWidth={360} maxHeight={height} borderRadius={10} />
       {heading || innerText ? (
-        <Box
-          position="absolute"
-          zIndex={10}
-          bottom={0}
-          width="100%"
-          p={2}
-          backgroundColor="transparentBlack"
-        >
+        <Box position="absolute" zIndex={10} bottom={0} width="100%" p={2} backgroundColor="transparentBlack">
           {heading && <Heading color="white">{heading}</Heading>}
           {innerText && <Text color="white">{innerText}</Text>}
         </Box>

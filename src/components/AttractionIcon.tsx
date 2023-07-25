@@ -23,10 +23,7 @@ export default function AttractionIcon({ attraction, name }: IconProps) {
   );
 }
 
-export function AttractionIconSwitcher({
-  attraction,
-  color
-}: IconSwitcherProps) {
+export function AttractionIconSwitcher({ attraction, color }: IconSwitcherProps) {
   switch (attraction) {
     case AttractionCategory.Castle:
       return <MaterialCommunityIcons name="castle" size={24} color={color} />;
@@ -37,12 +34,6 @@ export function AttractionIconSwitcher({
     case AttractionCategory.Church:
       return <MaterialCommunityIcons name="church" size={24} color={color} />;
     default:
-      return (
-        <MaterialCommunityIcons
-          name="alert-circle-outline"
-          size={24}
-          color={color}
-        />
-      );
+      return <MaterialCommunityIcons name="alert-circle-outline" size={24} color={color} />;
   }
 }
