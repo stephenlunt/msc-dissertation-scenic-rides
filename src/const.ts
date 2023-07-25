@@ -1,9 +1,9 @@
 /**
- * Shared constant values
+ * Last modified: 22-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: Constants used throughout the application codebase.
  */
 
-/**
- * Guidebook attraction height
- */
+// Guidebook screen fixed pixel heights.
 export const STOP_HEIGHT = 280;
 export const IMAGE_HEIGHT = 200;

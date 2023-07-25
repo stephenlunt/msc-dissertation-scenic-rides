@@ -1,3 +1,9 @@
+/**
+ * Last modified: 23-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: The data seed and types for bus stops along the route.
+ */
+
 import { Facility } from "../components/FacilityIcon";
 import { Credit } from "./types";
 
@@ -177,8 +183,7 @@ export const stopsData: Route[] = [
         lat: 54.968403,
         long: -2.463063,
         nearestPoint: 397,
-        details:
-          "Rail connections towards Newcastle upon Tyne and Carlisle, including Hexham."
+        details: "Rail connections towards Newcastle upon Tyne and Carlisle, including Hexham."
       },
       {
         sequence: 16,

@@ -1,5 +1,10 @@
 /**
- * https://docs.nativebase.io/customizing-theme
+ * Last modified: 29-06-2023
+ * Modifying author: Stephen Lunt
+ * File description: Custom theme used to extend Native Base UI
+ * components default theme.
+ *
+ * Documentation: https://docs.nativebase.io/customizing-theme
  */
 
 import { extendTheme } from "native-base";
@@ -36,10 +41,7 @@ const customTheme = extendTheme({
 
 export default customTheme;
 
-/**
- * https://docs.nativebase.io/typescript
- */
-
+// Ensures TypeScript knows types of custom theme.
 type CustomThemeType = typeof customTheme;
 
 declare module "native-base" {

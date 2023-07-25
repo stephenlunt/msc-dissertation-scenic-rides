@@ -1,3 +1,9 @@
+/**
+ * Last modified: 22-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: The data seed and types for coordinate points on the route.
+ */
+
 type Route = {
   id: string;
   points: RoutePoint[];
