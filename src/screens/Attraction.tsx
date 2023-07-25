@@ -9,26 +9,16 @@ import ImageCard from "../components/ImageCard";
 import CreditFooter from "../components/CreditFooter";
 import { AttractionIconSwitcher } from "../components/AttractionIcon";
 
-type AttractionScreenProps = NativeStackScreenProps<
-  RootStackParamList,
-  "Attraction"
->;
+type AttractionScreenProps = NativeStackScreenProps<RootStackParamList, "Attraction">;
 
-export default function Attraction({
-  route,
-  navigation
-}: AttractionScreenProps) {
+export default function Attraction({ route, navigation }: AttractionScreenProps) {
   const { id, routeId } = route.params;
   const [attraction, setAttraction] = useState<Attraction>();
 
   useLayoutEffect(() => {
-    const routeSpecificAttractions = attractionData.filter(
-      (route) => route.id === routeId
-    )[0].attractions;
+    const routeSpecificAttractions = attractionData.filter((route) => route.id === routeId)[0].attractions;
 
-    setAttraction(
-      routeSpecificAttractions.filter((attraction) => attraction.id === id)[0]
-    );
+    setAttraction(routeSpecificAttractions.filter((attraction) => attraction.id === id)[0]);
   }, []);
 
   return attraction ? (
@@ -37,16 +27,9 @@ export default function Attraction({
         {attraction.name}
       </Heading>
 
-      <ImageCard
-        imgSrc={attraction.image.imgSrc}
-        imgAlt={`Photo of ${attraction.name}`}
-        height={250}
-      />
+      <ImageCard imgSrc={attraction.image.imgSrc} imgAlt={`Photo of ${attraction.name}`} height={250} />
       <Text fontSize="sm" color="gray.700">
-        Image Credit:{" "}
-        <Link href={attraction.image.linkingUrl}>
-          {attraction.image.displayText}
-        </Link>
+        Image Credit: <Link href={attraction.image.linkingUrl}>{attraction.image.displayText}</Link>
       </Text>
 
       <Heading pt={4} pb={2}>
@@ -61,6 +44,41 @@ export default function Attraction({
         <AttractionIconSwitcher attraction={attraction.icon} color="black" />
         <Text pl={2}>{attraction.icon}</Text>
       </Flex>
+      <Text>Free Entry: {attraction.freeEntry ? "Yes" : "No"}</Text>
+
+      <Heading pt={4} pb={2}>
+        Opening Times
+      </Heading>
+      {attraction.openingTimes.other ? (
+        <Text>{attraction.openingTimes.other}</Text>
+      ) : (
+        <Box>
+          <Text>Weekdays: {attraction.openingTimes.weekday}</Text>
+          <Text>Weekends: {attraction.openingTimes.weekend}</Text>
+        </Box>
+      )}
+
+      <Heading pt={4} pb={2}>
+        Map
+      </Heading>
+      <ImageCard imgSrc={attraction.map.imgSrc} imgAlt={`Map of ${attraction.name}`} height={200} />
+      <Text fontSize="sm" color="gray.700">
+        Map Credit: {attraction.map.displayText}
+      </Text>
+
+      <Heading pt={4} pb={2}>
+        Contact Details
+      </Heading>
+      <Box>
+        {attraction.contactDetails.phone && <Text>Tel: {attraction.contactDetails.phone}</Text>}
+        {attraction.contactDetails.email && <Text>Email: {attraction.contactDetails.email}</Text>}
+        {attraction.contactDetails.address && (
+          <Text>
+            Address: {attraction.contactDetails.address.street}, {attraction.contactDetails.address.town},{" "}
+            {attraction.contactDetails.address.postcode}.
+          </Text>
+        )}
+      </Box>
 
       <CreditFooter credits={attraction.credits} />
     </ScrollView>

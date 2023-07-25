@@ -1,5 +1,7 @@
 /**
- * Data seed for attractions.
+ * Last modified: 25-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: The data seed and types for attractions along routes.
  */
 
 import type { Coordinate, Credit, ImageCredit } from "./types";
@@ -18,8 +20,28 @@ export type Attraction = {
   nearestStop: number;
   coordinates: Coordinate;
   image: ImageCredit;
+  map: ImageCredit;
   description: string;
+  freeEntry: boolean;
+  openingTimes: OpeningTimes;
+  contactDetails: ContactDetails;
   credits: Credit[];
+};
+
+type OpeningTimes = {
+  weekday?: string;
+  weekend?: string;
+  other?: string;
+};
+
+type ContactDetails = {
+  phone?: string;
+  email?: string;
+  address?: {
+    street: string;
+    town: string;
+    postcode: string;
+  };
 };
 
 export const attractionData: Route[] = [
@@ -41,7 +63,26 @@ export const attractionData: Route[] = [
           displayText: "Hexham Abbey",
           linkingUrl: "https://www.hexhamabbey.org.uk/"
         },
-        description: "Test",
+        map: {
+          imgSrc: require("../assets/maps/hexham_abbey.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Hexham Abbey is an inclusive, thriving church with regular services, several choirs, a great musical tradition and many parish groups that meet regularly and encourage each other on an adventure of faith. Set in the centre of the historic market town of Hexham, we welcome pilgrims and visitors who are planning to spend time in this place where faith has been celebrated for more than 1,340 years. Whether a local or a visitor, you will feel inspired by the sense of heritage, worship and community unique to this beautiful place. We welcome you to explore, experience, and enjoy!",
+        freeEntry: true,
+        openingTimes: {
+          weekday: "10AM - 5PM",
+          weekend: "11AM - 5PM"
+        },
+        contactDetails: {
+          phone: "01434 602031",
+          email: "admin@hexhamabbey.org.uk",
+          address: {
+            street: "The Parish Centre, Hexham Abbey",
+            town: "Hexham",
+            postcode: "NE46 3NB"
+          }
+        },
         credits: [
           {
             displayText: "Hexham Abbey",
@@ -61,14 +102,30 @@ export const attractionData: Route[] = [
         image: {
           imgSrc: require("../assets/img/chesters_bridge.jpg"),
           displayText: "English Heritage",
-          linkingUrl:
-            "https://www.english-heritage.org.uk/visit/places/chesters-bridge-abutment-hadrians-wall/"
+          linkingUrl: "https://www.english-heritage.org.uk/visit/places/chesters-bridge-abutment-hadrians-wall/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/chesters_bridge_brunton_turret.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Close to Chesters Roman Fort in Northumberland are the remains of a Roman bridge across the North Tyne. On the eastern river bank you can see evidence of two successive bridges:  an early one that just carried Hadrian's Wall, and a second, much larger one, that carried the Military Way - the road that serviced the Wall. This fine bridge, one of the most remarkable survivals on Hadrian's Wall, proclaimed the power and prestige of the Roman emperor and his empire.",
+        freeEntry: true,
+        openingTimes: {
+          other: "Open any reasonable time during daylight hours"
+        },
+        contactDetails: {
+          phone: "0370 333 1181",
+          address: {
+            street: "Chollerford",
+            town: "Hexham",
+            postcode: "NE46 4EN"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "English Heritage",
+            linkingUrl: "https://www.english-heritage.org.uk/visit/places/chesters-bridge-abutment-hadrians-wall/"
           }
         ]
       },
@@ -84,14 +141,30 @@ export const attractionData: Route[] = [
         image: {
           imgSrc: require("../assets/img/brunton_turret.jpg"),
           displayText: "English Heritage",
-          linkingUrl:
-            "https://www.english-heritage.org.uk/visit/places/brunton-turret-hadrians-wall/"
+          linkingUrl: "https://www.english-heritage.org.uk/visit/places/brunton-turret-hadrians-wall/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/chesters_bridge_brunton_turret.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Wall section and a surviving piece of turret two and a half metres high, built by men of the Twentieth Legion.",
+        freeEntry: true,
+        openingTimes: {
+          other: "Open any reasonable time during daylight hours"
+        },
+        contactDetails: {
+          phone: "0370 333 1181",
+          address: {
+            street: "Chollerford",
+            town: "Hexham",
+            postcode: "NE46 4EJ"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "English Heritage",
+            linkingUrl: "https://www.english-heritage.org.uk/visit/places/brunton-turret-hadrians-wall/"
           }
         ]
       },
@@ -107,14 +180,30 @@ export const attractionData: Route[] = [
         image: {
           imgSrc: require("../assets/img/planetrees.jpg"),
           displayText: "English Heritage",
-          linkingUrl:
-            "https://www.english-heritage.org.uk/visit/places/planetrees-roman-wall-hadrians-wall/"
+          linkingUrl: "https://www.english-heritage.org.uk/visit/places/planetrees-roman-wall-hadrians-wall/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/planetrees.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Not far east of Chesters Roman Fort in Northumberland is a 15 metre-long stretch of Hadrian's Wall at Planetrees. This length of wall is important for what it reveals about a change of plan that took place during the construction of the Wall, when its width was narrowed from 10 to 8 Roman feet - probably to speed up building. At Planetrees, clearly the soldiers laying the Wall's foundations had worked faster than the builders of the superstructure, because the narrower Wall sits on top of broader foundations.",
+        freeEntry: true,
+        openingTimes: {
+          other: "Open any reasonable time during daylight hours"
+        },
+        contactDetails: {
+          phone: "0370 333 1181",
+          address: {
+            street: "Chollerford",
+            town: "Hexham",
+            postcode: "NE46 4EQ"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "English Heritage",
+            linkingUrl: "https://www.english-heritage.org.uk/visit/places/planetrees-roman-wall-hadrians-wall/"
           }
         ]
       },
@@ -130,14 +219,31 @@ export const attractionData: Route[] = [
         image: {
           imgSrc: require("../assets/img/chesters_fort.jpg"),
           displayText: "English Heritage",
-          linkingUrl:
-            "https://www.english-heritage.org.uk/visit/places/chesters-roman-fort-and-museum-hadrians-wall/"
+          linkingUrl: "https://www.english-heritage.org.uk/visit/places/chesters-roman-fort-and-museum-hadrians-wall/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/chesters_roman_fort.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Come and see what life was like at one of the Roman Empire's most northern outposts. Chesters Roman Fort is the most complete Roman cavalry fort in Britain - wander around the unusually well-preserved baths and steam room, and the officers' quarters.",
+        freeEntry: false,
+        openingTimes: {
+          weekday: "10AM - 5PM",
+          weekend: "10AM - 5PM"
+        },
+        contactDetails: {
+          phone: "01434 681379",
+          address: {
+            street: "Chollerford",
+            town: "Hexham",
+            postcode: "NE46 4EU"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "English Heritage",
+            linkingUrl: "https://www.english-heritage.org.uk/visit/places/chesters-roman-fort-and-museum-hadrians-wall/"
           }
         ]
       },
@@ -153,14 +259,30 @@ export const attractionData: Route[] = [
         image: {
           imgSrc: require("../assets/img/temple_of_mithras.jpg"),
           displayText: "English Heritage",
-          linkingUrl:
-            "https://www.english-heritage.org.uk/visit/places/temple-of-mithras-carrawburgh-hadrians-wall/"
+          linkingUrl: "https://www.english-heritage.org.uk/visit/places/temple-of-mithras-carrawburgh-hadrians-wall/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/temple_mithras.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Carrawburgh Roman Fort is one of 16 forts along the 73-mile long Hadrian’s Wall, which was begun around AD 122. The forts were added to the Wall as a change to the original design. Carrawburgh housed a garrison of approximately 500 soldiers – first from south-west France, later from southern Belgium – responsible for defending the frontier of the Roman Empire. Occupying an area of 1.4 hectares on a slightly raised natural terrace, overlooking the Northumberland National Park, Carrawburgh sits between the Roman cavalry fort at Chesters and the infantry fortress at Housesteads. Nearby stands the fascinating temple to the god Mithras, built by the soldiers of Carrawburgh. Mithraism was a Roman religion inspired by a god originally worshipped in the eastern Empire. According to legend, Mithras captured and killed a sacred bull in a cave, which Mithraic temples were intended to evoke. The temple was probably built by soldiers at the fort around AD 200 and destroyed about AD 350. Three altars found here (replicas stand in the temple) were dedicated by commanding officers of the unit stationed here, the First Cohort of Batavians from the Rhineland.",
+        freeEntry: true,
+        openingTimes: {
+          other: "Open any reasonable time during daylight hours"
+        },
+        contactDetails: {
+          phone: "0370 333 1181",
+          address: {
+            street: "Humshaugh",
+            town: "Hexham",
+            postcode: "NE46 4DB"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "English Heritage",
+            linkingUrl: "https://www.english-heritage.org.uk/visit/places/temple-of-mithras-carrawburgh-hadrians-wall/"
           }
         ]
       },
@@ -176,14 +298,31 @@ export const attractionData: Route[] = [
         image: {
           imgSrc: require("../assets/img/housesteads_fort.jpg"),
           displayText: "English Heritage",
-          linkingUrl:
-            "https://www.english-heritage.org.uk/visit/places/housesteads-roman-fort-hadrians-wall/"
+          linkingUrl: "https://www.english-heritage.org.uk/visit/places/housesteads-roman-fort-hadrians-wall/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/housesteads.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Set high on a dramatic escarpment on Hadrian's Wall World Heritage Site, Housesteads Roman Fort takes you back to the Roman Empire. Wander the barrack blocks and the hospital. Peer into the oldest toilets you'll ever see, and admire the stunning panoramic views from this ancient fortress.",
+        freeEntry: false,
+        openingTimes: {
+          weekday: "10AM - 5PM",
+          weekend: "10AM - 5PM"
+        },
+        contactDetails: {
+          phone: "01434 344363",
+          address: {
+            street: "Haydon Bridge",
+            town: "Hexham",
+            postcode: "NE47 6NN"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "English Heritage",
+            linkingUrl: "https://www.english-heritage.org.uk/visit/places/housesteads-roman-fort-hadrians-wall/"
           }
         ]
       },
@@ -201,11 +340,30 @@ export const attractionData: Route[] = [
           displayText: "The Sill",
           linkingUrl: "https://www.thesill.org.uk/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/the_sill.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "The Sill is the perfect place to start exploring Northumberland National Park, and a fantastic location to connect with nature and the National Park’s unique and special landscapes. Located just a stone’s throw from Hadrian’s Wall, The Sill is free to enter and features exhibitions, a rooftop walk, cafe and shop. Whether you’re planning your next day out with friends or family, a hike along Hadrian’s Wall or want to learn more about Northumberland’s landscape, culture and heritage, start your next adventure at The Sill.",
+        freeEntry: true,
+        openingTimes: {
+          weekday: "10AM - 5PM",
+          weekend: "10AM - 5PM"
+        },
+        contactDetails: {
+          phone: "01434 341200",
+          email: "svwt@nnpa.org.uk",
+          address: {
+            street: "National Landscape Discovery Centre, Bardon Mill",
+            town: "Hexham",
+            postcode: "NE47 7AN"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "The Sill",
+            linkingUrl: "https://www.thesill.org.uk/"
           }
         ]
       },
@@ -223,17 +381,40 @@ export const attractionData: Route[] = [
           displayText: "Vindolanda Charitable Trust",
           linkingUrl: "https://www.vindolanda.com/roman-vindolanda-fort-museum"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/vindolanda.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Vindolanda lies just to the south of the curtain wall of Hadrian's Wall and has a very different ‘feel’ to other sites along the Wall. It lies upon the first Roman frontier in the north – The Stanegate Road and in a stunning landscape which lets your imagination really connect with its past. You will probably visit Vindolanda by driving or walking along this road to reach the fort and museum. Although first built by the Roman army before Hadrian’s Wall Vindolanda became an important construction and garrison base for the Wall, a Hadrian’s Wall fort in its own right. During this time Vindolanda was demolished and completely re-built no fewer than nine times. Each re-build, each community, leaving their own distinctive mark on the landscape and archaeology of the site.",
+        freeEntry: false,
+        openingTimes: {
+          weekday: "9:30AM - 5:30PM",
+          weekend: "9:30AM - 5:30PM"
+        },
+        contactDetails: {
+          phone: "01434 344277",
+          email: "info@vindolanda.com",
+          address: {
+            street: "Chesterholm Museum, Bardon Mill",
+            town: "Hexham",
+            postcode: "NE47 7JN"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "Vindolanda",
+            linkingUrl: "https://www.vindolanda.com/"
+          },
+          {
+            displayText: "Vindolanda FAQ",
+            linkingUrl: "https://www.vindolanda.com/frequentlyaskequestions"
           }
         ]
       },
       {
         id: 9,
-        name: "Milecastle 42",
+        name: "Cawfields & Milecastle 42",
         icon: AttractionCategory.Wall,
         nearestStop: 12,
         coordinates: {
@@ -245,11 +426,31 @@ export const attractionData: Route[] = [
           displayText: "Roman Britain",
           linkingUrl: "https://www.roman-britain.co.uk/places/cawfields/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/milecastle_42.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "At Cawfields is a dramatic stretch of Hadrian's Wall on a steep slope, one of the highest standing sections of the Wall. Within its length there are turrets and an impressive milecastle, which was probably built by the Second Legion.",
+        freeEntry: true,
+        openingTimes: {
+          other: "Open any reasonable time during daylight hours"
+        },
+        contactDetails: {
+          address: {
+            street: "Haltwhistle",
+            town: "Hexham",
+            postcode: "NE49 9PJ"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "English Heritage",
+            linkingUrl: "https://www.english-heritage.org.uk/visit/places/cawfields-roman-wall-hadrians-wall/"
+          },
+          {
+            displayText: "Roman Britain",
+            linkingUrl: "https://www.roman-britain.co.uk/places/cawfields/"
           }
         ]
       },
@@ -267,11 +468,33 @@ export const attractionData: Route[] = [
           displayText: "Vindolanda Charitable Trust",
           linkingUrl: "https://www.vindolanda.com/roman-army-museum"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/roman_army_museum.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Come to the Roman Army Museum and immerse yourself in the life of a Roman soldier. The museum includes three galleries, 3D film and holographic classroom. Based at the site of Magna Roman Fort the museum is situated next to one of the most complete sections of Hadrian’s Wall.",
+        freeEntry: false,
+        openingTimes: {
+          weekday: "9:30AM - 5:30PM",
+          weekend: "9:30AM - 5:30PM"
+        },
+        contactDetails: {
+          phone: "01434 344277",
+          address: {
+            street: "Roman Army Museum, Greenhead",
+            town: "Brampton",
+            postcode: "CA8 7JB"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "Vindolanda Charitable Trust",
+            linkingUrl: "https://www.vindolanda.com/roman-army-museum"
+          },
+          {
+            displayText: "Roman Army Museum & Magna Fort",
+            linkingUrl: "https://romanarmymuseum.com/"
           }
         ]
       },
@@ -287,14 +510,31 @@ export const attractionData: Route[] = [
         image: {
           imgSrc: require("../assets/img/thirlwall_castle.webp"),
           displayText: "Northumberland National Park",
-          linkingUrl:
-            "https://www.northumberlandnationalpark.org.uk/places-to-visit/hadrians-wall/thirlwall-castle/"
+          linkingUrl: "https://www.northumberlandnationalpark.org.uk/places-to-visit/hadrians-wall/thirlwall-castle/"
         },
-        description: "",
+        map: {
+          imgSrc: require("../assets/maps/thirlwall_castle.webp"),
+          displayText: "Google Maps"
+        },
+        description:
+          "Originally built in the 12th century, and later strengthened using stones from nearby Hadrian’s Wall, Thirlwall Castle began to fall into disrepair in the 17th century. The site is protected by Grade I listed building and Scheduled Ancient Monument status. In 1999, Northumberland National Park Authority acquired a 99-year lease on Thirlwall Castle and 10 hectares of adjacent woodland.",
+        freeEntry: true,
+        openingTimes: {
+          other: "Open any reasonable time during daylight hours"
+        },
+        contactDetails: {
+          phone: "01434 605555",
+          email: "enquiries@nnpa.org.uk",
+          address: {
+            street: "Thirlwall Castle, Pennine Way",
+            town: "Brampton",
+            postcode: "CA8 7HY"
+          }
+        },
         credits: [
           {
-            displayText: "",
-            linkingUrl: ""
+            displayText: "Northumberland National Park",
+            linkingUrl: "https://www.northumberlandnationalpark.org.uk/places-to-visit/hadrians-wall/thirlwall-castle/"
           }
         ]
       }
