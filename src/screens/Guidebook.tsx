@@ -1,3 +1,9 @@
+/**
+ * Last modified: 26-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component for the Guidebook screen.
+ */
+
 import { useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -17,10 +23,15 @@ import calculateRoutePercentage from "../util/calculateRoutePercentage";
 import ProgressBar from "../components/ProgressBar";
 import StopList from "../components/StopList";
 
+// Navigation props for the guidebook screen.
 type GuidebookScreenProps = NativeStackScreenProps<RootStackParamList, "Guidebook">;
 
+// Global variable to store the user geolocation subscription.
 let locationSubscription: Location.LocationSubscription | undefined;
 
+/**
+ * The React default component export for the guidebook screen.
+ */
 export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Navigation state
   const { id } = route.params;
@@ -45,6 +56,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Refs
   const scrollViewRef = useRef<null | ScrollView>(null);
 
+  /**
+   * Filter and store the data points for the route in state on screen render.
+   */
   useEffect(() => {
     setBusRoute(busRoutesData.filter((busRoute) => busRoute.id === id)[0]);
     setStops(stopsData.filter((busRoute) => busRoute.id === id)[0].stops);
@@ -53,9 +67,13 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   }, []);
 
   /**
-   * https://docs.expo.dev/versions/latest/sdk/location/#locationsubscription
-   * https://chafikgharbi.com/expo-location-tracking/
-   * https://reactnavigation.org/docs/navigation-events/
+   * When the screen loads, request permission to use geolocation features and
+   * use the expo location library to subscribe to the users location.
+   *
+   * Source documentation:
+   * - https://docs.expo.dev/versions/latest/sdk/location/#locationsubscription
+   * - https://chafikgharbi.com/expo-location-tracking/
+   * - https://reactnavigation.org/docs/navigation-events/
    */
   useEffect(() => {
     navigation.addListener("focus", () => {
@@ -68,7 +86,6 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
         if (locationSubscription === undefined) {
           locationSubscription = await Location.watchPositionAsync(options, (location) => {
-            console.log("Location subscription: " + location);
             setGeolocation(location);
           });
         }
@@ -76,19 +93,29 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     });
   }, [navigation]);
 
+  /**
+   * Location accuracy and update configuration options.
+   */
   const options: Location.LocationOptions = {
     accuracy: Location.LocationAccuracy.High,
     distanceInterval: 10
   };
 
+  /**
+   * When the guidebook screen is left, unsubscribe from watching the users location.
+   */
   useEffect(() => {
     navigation.addListener("blur", () => {
-      locationSubscription?.remove();
+      if (!locationSubscription) return;
+
+      locationSubscription.remove();
       locationSubscription = undefined;
-      console.log("Subscription removed.");
     });
   }, [navigation]);
 
+  /**
+   * Calculate the new route progress on geolocation updates.
+   */
   useEffect(() => {
     if (!points || !stops || !geolocation) return;
 
@@ -99,6 +126,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     setNextStop(progress.nextStop);
   }, [points, stops, geolocation, direction]);
 
+  /**
+   * Calculate the route percentage completed and update progress bar on location change.
+   */
   useEffect(() => {
     if (!stops || !lastStop || !nextStop || !nearestPoint) return;
 
@@ -106,7 +136,10 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     setRoutePercentage(routePercentCompleted);
 
     /**
-     * https://reactnative.dev/docs/scrollview#scrollto
+     * Using a React Ref to the UI ScrollView, a custom scroll height can be
+     * scrolled to. Documentation below details this method.
+     *
+     * Source URL: https://reactnative.dev/docs/scrollview#scrollto
      */
     if (!scrollViewRef.current) return;
 
@@ -119,26 +152,33 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
       scrollHeight = lastStop.sequence * SCROLL_HEIGHT;
     }
 
-    scrollViewRef.current!.scrollTo({ y: scrollHeight, animated: true });
+    scrollViewRef.current.scrollTo({ y: scrollHeight, animated: true });
   }, [stops, lastStop, nextStop, nearestPoint, direction]);
 
   /**
-   * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+   * Switches outbound and outbound on click of the swap direction button. The sort function
+   * swaps the order of the stops based on their sequence to switch their display in the UI.
+   * Documentation for the sort method is available below.
+   *
+   * Sort method source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
    */
   function swapDirection() {
+    if (!stops) return;
+
     if (direction === Direction.Inbound) {
       setDirection(Direction.Outbound);
-      const orderStops = stops?.sort((stopA, stopB) => stopA.sequence - stopB.sequence);
+      const orderStops = stops.sort((stopA, stopB) => stopA.sequence - stopB.sequence);
       setStops(orderStops);
     } else {
       setDirection(Direction.Inbound);
-      const orderStops = stops?.sort((stopA, stopB) => stopB.sequence - stopA.sequence);
+      const orderStops = stops.sort((stopA, stopB) => stopB.sequence - stopA.sequence);
       setStops(orderStops);
     }
   }
 
   return busRoute && stops && attractions ? (
     <View pb={24}>
+      {/* Screen header to swap route direction */}
       <Flex
         px={4}
         py={2}
@@ -159,13 +199,14 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         />
       </Flex>
 
+      {/* Guidebook progress bar and stop list components  */}
       <ScrollView ref={scrollViewRef}>
         <Text pt={2} mx={4}>
           Explore what the {id} has to offer at every stop along the route.
         </Text>
         <Flex flexDirection="row" my={4}>
           <ProgressBar percentage={routePercentage} />
-          <StopList routeId={id} stops={stops} attractions={attractions} geolocation={geolocation} />
+          <StopList routeId={id} stops={stops} attractions={attractions} />
         </Flex>
       </ScrollView>
     </View>

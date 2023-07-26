@@ -1,23 +1,35 @@
-import { useLayoutEffect, useState } from "react";
+/**
+ * Last modified: 25-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component for the Attraction screen.
+ */
+
+import { useEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScrollView, Heading, Box, Flex, Text, Link } from "native-base";
 
 import { RootStackParamList } from "../../App";
-import type { Attraction } from "../data/attractions";
-import { attractionData } from "../data/attractions";
+import { type Attraction, attractionData } from "../data/attractions";
+import { AttractionIconSwitcher } from "../components/AttractionIcon";
 import ImageCard from "../components/ImageCard";
 import CreditFooter from "../components/CreditFooter";
-import { AttractionIconSwitcher } from "../components/AttractionIcon";
 
+// Attraction screen navigation props
 type AttractionScreenProps = NativeStackScreenProps<RootStackParamList, "Attraction">;
 
+/**
+ * The React default component export for the Attraction screen.
+ */
 export default function Attraction({ route, navigation }: AttractionScreenProps) {
+  // Extract an attraction and route id parameter from the navigation props.
   const { id, routeId } = route.params;
   const [attraction, setAttraction] = useState<Attraction>();
 
-  useLayoutEffect(() => {
+  /**
+   * Filter the attractions data by route and attraction id and store in React state.
+   */
+  useEffect(() => {
     const routeSpecificAttractions = attractionData.filter((route) => route.id === routeId)[0].attractions;
-
     setAttraction(routeSpecificAttractions.filter((attraction) => attraction.id === id)[0]);
   }, []);
 

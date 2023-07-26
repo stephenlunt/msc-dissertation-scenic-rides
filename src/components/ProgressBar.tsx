@@ -1,5 +1,5 @@
 /**
- * Last modified: 25-07-2023
+ * Last modified: 26-07-2023
  * Modifying author: Stephen Lunt
  * File description: React component for the vertical progress bar
  * used on the Guidebook screen.

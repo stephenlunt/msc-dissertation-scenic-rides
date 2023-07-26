@@ -1,4 +1,10 @@
-import { useEffect, useState } from "react";
+/**
+ * Last modified: 26-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component for the stop list used on the
+ * Guidebook screen.
+ */
+
 import { LocationObject } from "expo-location";
 import { Flex, Box, Heading, Pressable, ScrollView, Badge, Image } from "native-base";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -8,25 +14,27 @@ import { RootStackParamList } from "../../App";
 import { STOP_HEIGHT, IMAGE_HEIGHT } from "../const";
 import { BusStop } from "../data/busStops";
 import { Attraction } from "../data/attractions";
-import { haversine } from "../util/haversine";
-import FacilityIcon from "./FacilityIcon";
 import AttractionIcon from "./AttractionIcon";
 
+// Props for navigation and stop list
 type StopListComponentProp = NativeStackNavigationProp<RootStackParamList, "Attraction">;
 
 type Props = {
   routeId: string;
   stops: BusStop[];
   attractions: Attraction[];
-  geolocation: LocationObject | undefined;
 };
 
-export default function StopList({ routeId, stops, attractions, geolocation }: Props) {
-  // https://reactnavigation.org/docs/connecting-navigation-prop/
+/**
+ * The stop list component renders each of the bus stops with their attractions
+ * for the Guidebook screen and sets up linking to the Attraction screens.
+ */
+export default function StopList({ routeId, stops, attractions }: Props) {
   const navigation = useNavigation<StopListComponentProp>();
 
   return (
     <Flex flexDirection="column" flexShrink={1} mr={4}>
+      {/* For each bus stop, a box is created */}
       {stops.map((stop, index) => {
         let multipleAttractions: boolean = stop.attractions ? stop.attractions.length > 1 : false;
 
@@ -35,6 +43,8 @@ export default function StopList({ routeId, stops, attractions, geolocation }: P
             <Heading pb={2}>{stop.name}</Heading>
             <Badge colorScheme="info" width="20" mb={2}>{`STOP ${index + 1}`}</Badge>
 
+            {/* If the stop has attractions, the attractions are render on a horizontal scroll ScrollView
+            and width adjusted based on if there are greater than 1 attraction for that stop */}
             {stop.attractions ? (
               <ScrollView horizontal={multipleAttractions ? true : false}>
                 {stop.attractions.map((attractionId, index) => {

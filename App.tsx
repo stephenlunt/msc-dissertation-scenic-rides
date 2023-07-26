@@ -13,7 +13,7 @@ import { NativeBaseProvider } from "native-base";
 
 import customTheme from "./src/theme";
 import Home from "./src/screens/Home";
-import Route from "./src/screens/Route";
+import BusRoute from "./src/screens/BusRoute";
 import Guidebook from "./src/screens/Guidebook";
 import Attraction from "./src/screens/Attraction";
 import About from "./src/screens/About";
@@ -27,7 +27,7 @@ import Help from "./src/screens/Help";
  */
 export type RootStackParamList = {
   Home: undefined;
-  Route: { id: string };
+  BusRoute: { id: string };
   Guidebook: { id: string };
   Attraction: { id: number; routeId: string };
   Stop: { id: number };
@@ -71,7 +71,7 @@ export default function App() {
       <NativeBaseProvider theme={customTheme}>
         <Stack.Navigator initialRouteName="Home">
           <Stack.Screen name="Home" component={Home} options={{ title: "Scenic Rides" }} />
-          <Stack.Screen name="Route" component={Route} options={({ route }) => ({ title: route.params.id })} />
+          <Stack.Screen name="BusRoute" component={BusRoute} options={({ route }) => ({ title: route.params.id })} />
           <Stack.Screen name="Guidebook" component={Guidebook} />
           <Stack.Screen name="Attraction" component={Attraction} />
           <Stack.Screen name="About" component={About} />

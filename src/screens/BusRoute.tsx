@@ -1,22 +1,32 @@
-import { useLayoutEffect, useState } from "react";
+/**
+ * Last modified: 14-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component for the Bus Route screen.
+ */
+
+import { useEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScrollView, Box, Heading, Text, Pressable, Image, Link } from "native-base";
 
 import { RootStackParamList } from "../../App";
-import type { BusRoute } from "../data/busRoutes";
-import { busRoutesData } from "../data/busRoutes";
+import { type BusRoute, busRoutesData } from "../data/busRoutes";
 import CreditFooter from "../components/CreditFooter";
 
-/**
- * https://reactnavigation.org/docs/typescript/
- */
-type RouteScreenProps = NativeStackScreenProps<RootStackParamList, "Route">;
+// Navigation props for the bus route screen.
+type RouteScreenProps = NativeStackScreenProps<RootStackParamList, "BusRoute">;
 
-export default function Route({ route, navigation }: RouteScreenProps) {
+/**
+ * The React default component export for the Bus Route screen.
+ */
+export default function BusRoute({ route, navigation }: RouteScreenProps) {
+  // Access the 'id' parameter from the navigation props passed through the link.
   const { id } = route.params;
   const [routeDetails, setRouteDetails] = useState<BusRoute>();
 
-  useLayoutEffect(() => {
+  /**
+   * Filter the bus route data to a specific id on screens first render.
+   */
+  useEffect(() => {
     setRouteDetails(busRoutesData.filter((busRoute) => busRoute.id === id)[0]);
   }, []);
 
@@ -26,6 +36,7 @@ export default function Route({ route, navigation }: RouteScreenProps) {
         {routeDetails.name}
       </Heading>
 
+      {/* Guidebook link */}
       <Pressable
         onPress={() => navigation.navigate("Guidebook", { id: routeDetails.id })}
         height={180}
