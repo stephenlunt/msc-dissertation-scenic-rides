@@ -1,3 +1,9 @@
+/**
+ * Last modified: 22-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component to credit sources used in the application.
+ */
+
 import { Heading, Text, Link } from "native-base";
 
 import type { Credit } from "../data/types";
@@ -6,6 +12,9 @@ type Props = {
   credits: Credit[];
 };
 
+/**
+ * Returns a heading and list of all credits passed in as props.
+ */
 export default function CreditFooter({ credits }: Props) {
   return (
     <>

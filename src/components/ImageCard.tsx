@@ -1,6 +1,13 @@
+/**
+ * Last modified: 10-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: A reusable image component.
+ */
+
 import { Box, Image, Heading, Text } from "native-base";
 import { ImageSourcePropType } from "react-native";
 
+// Image component props
 type Props = {
   height: number;
   imgSrc: ImageSourcePropType;
@@ -9,6 +16,9 @@ type Props = {
   innerText?: string;
 };
 
+/**
+ * Returns an image sized for mobile with an optional heading and text field.
+ */
 export default function ImageCard({ imgSrc, imgAlt, heading, innerText, height }: Props) {
   return (
     <>

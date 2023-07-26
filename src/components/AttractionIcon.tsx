@@ -1,17 +1,28 @@
+/**
+ * Last modified: 25-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component to manage icons for attractions.
+ */
+
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Flex, Text } from "native-base";
 
+// Enum of acceptable icon types and user-friendly text.
 export enum AttractionCategory {
-  Castle = "Castle",
+  Castle = "Castle / Fort",
   Church = "Church",
   Museum = "Museum",
-  Wall = "Wall"
+  Wall = "Wall Section / Ruin"
 }
 
+// Props type definitions.
 type IconProps = { attraction: AttractionCategory; name: string };
 type IconSwitcherProps = { attraction: AttractionCategory; color: string };
 
+/**
+ * Component to return an icon and attraction type.
+ */
 export default function AttractionIcon({ attraction, name }: IconProps) {
   return (
     <Flex direction="row" alignItems="center">
@@ -23,6 +34,9 @@ export default function AttractionIcon({ attraction, name }: IconProps) {
   );
 }
 
+/**
+ * Switch function to return the correct MaterialIcon type.
+ */
 export function AttractionIconSwitcher({ attraction, color }: IconSwitcherProps) {
   switch (attraction) {
     case AttractionCategory.Castle:

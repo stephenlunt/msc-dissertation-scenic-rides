@@ -30,3 +30,11 @@ export type ImageCredit = {
   displayText: string;
   linkingUrl?: string;
 };
+
+/**
+ * An emun representing inbound/outbound travel directions.
+ */
+export enum Direction {
+  Outbound,
+  Inbound
+}

@@ -1,3 +1,10 @@
+/**
+ * Last modified: 25-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component for the vertical progress bar
+ * used on the Guidebook screen.
+ */
+
 import { Flex, Box } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
@@ -6,10 +13,19 @@ type Props = {
   percentage: number;
 };
 
+/**
+ * The progress bar component uses a percentage representing the route completion
+ * and relative/absolute position UI elements to create the visual effect of
+ * a vertical scroll bar which updates as the route goes on.
+ */
 export default function ProgressBar({ percentage }: Props) {
-  // The adjusted percentage ensure correct visual alignment versus the raw percentage.
   const [adjustedPercentage, setAdjustedPercentage] = useState<number>();
 
+  /**
+   * When the percentage prop is updated from it's root component in
+   * Guidebook.tsx, we apply an adjustment on it. This is purely stylistic
+   * to fix visual bugs at the upper/lower end of the scroll bar.
+   */
   useEffect(() => {
     if (percentage < 2) {
       setAdjustedPercentage(2);

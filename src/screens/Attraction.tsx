@@ -22,7 +22,7 @@ export default function Attraction({ route, navigation }: AttractionScreenProps)
   }, []);
 
   return attraction ? (
-    <ScrollView mx={4} pb={4}>
+    <ScrollView mx={4}>
       <Heading py={4} textAlign="center">
         {attraction.name}
       </Heading>
@@ -44,7 +44,7 @@ export default function Attraction({ route, navigation }: AttractionScreenProps)
         <AttractionIconSwitcher attraction={attraction.icon} color="black" />
         <Text pl={2}>{attraction.icon}</Text>
       </Flex>
-      <Text>Free Entry: {attraction.freeEntry ? "Yes" : "No"}</Text>
+      <Text>{attraction.freeEntry ? "Free entry" : "Paid entry"}</Text>
 
       <Heading pt={4} pb={2}>
         Opening Times
@@ -63,7 +63,7 @@ export default function Attraction({ route, navigation }: AttractionScreenProps)
       </Heading>
       <ImageCard imgSrc={attraction.map.imgSrc} imgAlt={`Map of ${attraction.name}`} height={200} />
       <Text fontSize="sm" color="gray.700">
-        Map Credit: {attraction.map.displayText}
+        Credit: {attraction.map.displayText}
       </Text>
 
       <Heading pt={4} pb={2}>

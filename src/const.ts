@@ -6,4 +6,5 @@
 
 // Guidebook screen fixed pixel heights.
 export const STOP_HEIGHT = 280;
+export const SCROLL_HEIGHT = 290;
 export const IMAGE_HEIGHT = 200;

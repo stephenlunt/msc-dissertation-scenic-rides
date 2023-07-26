@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScrollView } from "react-native";
@@ -6,25 +6,18 @@ import { View, Flex, Box, Text, Heading, IconButton } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
-import { STOP_HEIGHT, IMAGE_HEIGHT } from "../const";
-import type { BusStop } from "../data/busStops";
-import { stopsData } from "../data/busStops";
-import type { Attraction } from "../data/attractions";
-import { attractionData } from "../data/attractions";
-import type { RoutePoint } from "../data/routePoints";
-import { routePoints } from "../data/routePoints";
+import { SCROLL_HEIGHT } from "../const";
+import { type BusRoute, busRoutesData } from "../data/busRoutes";
+import { type BusStop, stopsData } from "../data/busStops";
+import { type Attraction, attractionData } from "../data/attractions";
+import { type RoutePoint, routePoints } from "../data/routePoints";
+import { Direction } from "../data/types";
+import calculateRouteProgress from "../util/calculateProgress";
+import calculateRoutePercentage from "../util/calculateRoutePercentage";
 import ProgressBar from "../components/ProgressBar";
 import StopList from "../components/StopList";
-import { busRoutesData } from "../data/busRoutes";
-import { haversine } from "../util/haversine";
 
 type GuidebookScreenProps = NativeStackScreenProps<RootStackParamList, "Guidebook">;
-
-// TODO: This shouldn't be static!
-enum Direction {
-  Outbound = "Hexham to Haltwhistle",
-  Inbound = "Haltwhistle to Hexham"
-}
 
 let locationSubscription: Location.LocationSubscription | undefined;
 
@@ -33,6 +26,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   const { id } = route.params;
 
   // Data import state
+  const [busRoute, setBusRoute] = useState<BusRoute>();
   const [stops, setStops] = useState<BusStop[]>();
   const [attractions, setAttractions] = useState<Attraction[]>();
   const [points, setPoints] = useState<RoutePoint[]>();
@@ -51,11 +45,12 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Refs
   const scrollViewRef = useRef<null | ScrollView>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    setBusRoute(busRoutesData.filter((busRoute) => busRoute.id === id)[0]);
     setStops(stopsData.filter((busRoute) => busRoute.id === id)[0].stops);
     setAttractions(attractionData.filter((busRoute) => busRoute.id === id)[0].attractions);
     setPoints(routePoints.filter((busRoute) => busRoute.id === id)[0].points);
-  }, [stops, attractions, points]);
+  }, []);
 
   /**
    * https://docs.expo.dev/versions/latest/sdk/location/#locationsubscription
@@ -71,11 +66,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
           return;
         }
 
-        console.log(locationSubscription);
-
         if (locationSubscription === undefined) {
           locationSubscription = await Location.watchPositionAsync(options, (location) => {
-            console.log(location);
+            console.log("Location subscription: " + location);
             setGeolocation(location);
           });
         }
@@ -96,59 +89,21 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     });
   }, [navigation]);
 
-  /**
-   * Calculate the nearest point and % travelled.
-   */
   useEffect(() => {
-    if (!points || !geolocation) return;
+    if (!points || !stops || !geolocation) return;
 
-    const userLocation = {
-      lat: geolocation.coords.latitude,
-      long: geolocation.coords.longitude
-    };
+    const progress = calculateRouteProgress(points, stops, geolocation, direction);
 
-    let closetPoint: number = 1;
-    let lowestDistanceAway = Number.MAX_SAFE_INTEGER; // Sets as high as possible.
-
-    points.forEach((p) => {
-      let distanceAway = haversine(userLocation, { lat: p.lat, long: p.long });
-
-      if (distanceAway < lowestDistanceAway) {
-        lowestDistanceAway = distanceAway;
-        closetPoint = p.sequence;
-      }
-    });
-
-    setNearestPoint(closetPoint);
-  }, [geolocation, points]);
+    setNearestPoint(progress.nearestPoint);
+    setLastStop(progress.lastStop);
+    setNextStop(progress.nextStop);
+  }, [points, stops, geolocation, direction]);
 
   useEffect(() => {
-    if (!stops || !nearestPoint) return;
+    if (!stops || !lastStop || !nextStop || !nearestPoint) return;
 
-    for (let i = 0; i < stops.length; i++) {
-      // TODO: this causes an index out of bounds error
-      if (nearestPoint >= stops[i].nearestPoint && nearestPoint < stops[i + 1].nearestPoint) {
-        setLastStop(stops[i]);
-        setNextStop(stops[i + 1]);
-
-        console.log(stops[i].sequence, stops[i + 1].sequence);
-      }
-    }
-  }, [stops, nearestPoint]);
-
-  useEffect(() => {
-    const BASE_STYLE_ADJUSTMENT = 1;
-
-    if (!lastStop || !nextStop || !nearestPoint) return;
-
-    const stopsDivider = stops!.length;
-    let stopDifferenceInPoints = nextStop.nearestPoint - lastStop.nearestPoint;
-
-    let intermediatePercent = (((nearestPoint - lastStop.nearestPoint) / stopDifferenceInPoints) * 100) / stopsDivider;
-
-    let basePercent = (lastStop.sequence / stopsDivider) * 100;
-
-    setRoutePercentage(basePercent + intermediatePercent + BASE_STYLE_ADJUSTMENT);
+    const routePercentCompleted = calculateRoutePercentage(stops, lastStop, nextStop, nearestPoint, direction);
+    setRoutePercentage(routePercentCompleted);
 
     /**
      * https://reactnative.dev/docs/scrollview#scrollto
@@ -156,10 +111,16 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     if (!scrollViewRef.current) return;
 
     // Calculate the scroll height using the fixed pixel height of the stop / attraction cards.
-    let scrollHeight = lastStop.sequence * STOP_HEIGHT;
+    let scrollHeight: number;
+
+    if (direction === Direction.Inbound) {
+      scrollHeight = (stops.length - 1) * SCROLL_HEIGHT - lastStop.sequence * SCROLL_HEIGHT;
+    } else {
+      scrollHeight = lastStop.sequence * SCROLL_HEIGHT;
+    }
 
     scrollViewRef.current!.scrollTo({ y: scrollHeight, animated: true });
-  }, [lastStop, nextStop, nearestPoint]);
+  }, [stops, lastStop, nextStop, nearestPoint, direction]);
 
   /**
    * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
@@ -176,8 +137,8 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
     }
   }
 
-  return stops && attractions ? (
-    <View>
+  return busRoute && stops && attractions ? (
+    <View pb={24}>
       <Flex
         px={4}
         py={2}
@@ -188,7 +149,9 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         justifyContent="space-between"
       >
         <Heading my="auto" textAlign="center">
-          {direction == Direction.Outbound ? `Origin to Destination` : `Destination to Origin`}
+          {direction == Direction.Outbound
+            ? `${busRoute.origin} to ${busRoute.destination}`
+            : `${busRoute.destination} to ${busRoute.origin}`}
         </Heading>
         <IconButton
           icon={<MaterialCommunityIcons name="swap-horizontal-variant" size={24} color="black" />}

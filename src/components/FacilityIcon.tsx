@@ -1,7 +1,14 @@
+/**
+ * Last modified: 25-07-2023
+ * Modifying author: Stephen Lunt
+ * File description: React component to manage icons for bus stop facilities.
+ */
+
 import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Flex, Text } from "native-base";
 
+// Enum of acceptable icon types and user-friendly text.
 export enum Facility {
   Toilets = "Toilets",
   CarPark = "Car Park",
@@ -9,8 +16,12 @@ export enum Facility {
   Hotel = "Hotel"
 }
 
+// Props type definitions.
 type Props = { facility: Facility };
 
+/**
+ * Component to return the facility icon and type.
+ */
 export default function FacilityIcon({ facility }: Props) {
   return (
     <Flex
@@ -29,6 +40,9 @@ export default function FacilityIcon({ facility }: Props) {
   );
 }
 
+/**
+ * Switch function to return the correct MaterialIcon type.
+ */
 function IconSwitcher({ facility }: Props) {
   switch (facility) {
     case Facility.Toilets:
