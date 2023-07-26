@@ -13,7 +13,10 @@ export enum Facility {
   Toilets = "Toilets",
   CarPark = "Car Park",
   Camping = "Camping",
-  Hotel = "Hotel"
+  Hotel = "Hotel",
+  WiFi = "Wi-Fi",
+  FoodAndDrink = "Food & Drink",
+  Shop = "Shop"
 }
 
 // Props type definitions.
@@ -53,6 +56,12 @@ function IconSwitcher({ facility }: Props) {
       return <MaterialCommunityIcons name="campfire" size={24} color="black" />;
     case Facility.Hotel:
       return <MaterialIcons name="hotel" size={24} color="black" />;
+    case Facility.WiFi:
+      return <MaterialIcons name="wifi" size={24} color="black" />;
+    case Facility.FoodAndDrink:
+      return <MaterialCommunityIcons name="food-fork-drink" size={24} color="black" />;
+    case Facility.Shop:
+      return <MaterialIcons name="shopping-cart" size={24} color="black" />;
     default:
       return <MaterialCommunityIcons name="alert-circle-outline" size={24} color="black" />;
   }

@@ -5,8 +5,7 @@
  * Guidebook screen.
  */
 
-import { LocationObject } from "expo-location";
-import { Flex, Box, Heading, Pressable, ScrollView, Badge, Image } from "native-base";
+import { Flex, Box, Heading, Pressable, ScrollView, Badge, Image, Text, Link } from "native-base";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
 
@@ -15,6 +14,7 @@ import { STOP_HEIGHT, IMAGE_HEIGHT } from "../const";
 import { BusStop } from "../data/busStops";
 import { Attraction } from "../data/attractions";
 import AttractionIcon from "./AttractionIcon";
+import FacilityIcon from "./FacilityIcon";
 
 // Props for navigation and stop list
 type StopListComponentProp = NativeStackNavigationProp<RootStackParamList, "Attraction">;
@@ -90,26 +90,28 @@ export default function StopList({ routeId, stops, attractions }: Props) {
               </ScrollView>
             ) : (
               <Box bgColor="backdrop" borderRadius={10} h={`${IMAGE_HEIGHT}px`} px={2} py={4}>
-                {stop.details}
+                <Heading fontSize="md" mb={1}>
+                  Stop Details
+                </Heading>
+                <Text>{stop.details}</Text>
+
+                {stop.facilities ? (
+                  <Box mt={2}>
+                    <Heading size="sm" mb={1}>
+                      Facilities
+                    </Heading>
+                    <Flex direction="row" flexWrap="wrap" mb={1} py={1}>
+                      {stop.facilities.allFacilities.map((f, i) => {
+                        return <FacilityIcon key={i} facility={f} />;
+                      })}
+                    </Flex>
+                    <Text fontSize="sm">
+                      Credit: <Link href={stop.facilities.credit.linkingUrl}>{stop.facilities.credit.displayText}</Link>
+                    </Text>
+                  </Box>
+                ) : null}
               </Box>
             )}
-
-            {/* TODO: integrate back in a set height */}
-            {/* {stop.facilities ? (
-              <Box mt={2}>
-                <Heading size="sm" mb={1}>
-                  Facilities
-                </Heading>
-                <Flex direction="row" flexWrap="wrap" mb={1}>
-                  {stop.facilities.allFacilities.map((f, i) => {
-                    return <FacilityIcon key={i} facility={f} />;
-                  })}
-                </Flex>
-                <Text fontSize="sm">
-                  Source: {stop.facilities.credit.displayName}
-                </Text>
-              </Box>
-            ) : null} */}
           </Box>
         );
       })}

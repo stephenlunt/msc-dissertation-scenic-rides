@@ -50,7 +50,7 @@ export const stopsData: Route[] = [
         nearestPoint: 7,
         details: "Rail connections towards Newcastle upon Tyne and Carlisle.",
         facilities: {
-          allFacilities: [Facility.Toilets, Facility.CarPark],
+          allFacilities: [Facility.Toilets, Facility.CarPark, Facility.WiFi],
           credit: {
             displayText: "Northern Rail",
             linkingUrl: "https://www.northernrailway.co.uk/stations/hexham"
@@ -62,7 +62,8 @@ export const stopsData: Route[] = [
         name: "Acomb Garage",
         lat: 54.98994399999999,
         long: -2.115331,
-        nearestPoint: 29
+        nearestPoint: 29,
+        details: "Acomb is a small village just north of Hexham. "
       },
       {
         sequence: 3,
@@ -70,11 +71,12 @@ export const stopsData: Route[] = [
         lat: 55.01474799999999,
         long: -2.132744999999999,
         nearestPoint: 49,
+        details: "The Hadrian Hotel is a small inn located in Wall, Hexham.",
         facilities: {
-          allFacilities: [Facility.Hotel],
+          allFacilities: [Facility.Hotel, Facility.FoodAndDrink],
           credit: {
-            displayText: "...",
-            linkingUrl: "..."
+            displayText: "The Hadrian Hotel",
+            linkingUrl: "https://www.hadrianhotel.co.uk/"
           }
         }
       },
@@ -92,11 +94,12 @@ export const stopsData: Route[] = [
         lat: 55.02964799999999,
         long: -2.129195,
         nearestPoint: 59,
+        details: "George Hotel is an 18th century building offering a range of rooms in Chollerford.",
         facilities: {
-          allFacilities: [Facility.Hotel],
+          allFacilities: [Facility.Hotel, Facility.FoodAndDrink],
           credit: {
-            displayText: "...",
-            linkingUrl: "..."
+            displayText: "George Hotel",
+            linkingUrl: "https://bespokehotels.com/the-george-hotel/"
           }
         }
       },
@@ -162,11 +165,12 @@ export const stopsData: Route[] = [
         lat: 54.98164699999999,
         long: -2.448778,
         nearestPoint: 368,
+        details: "A camping, glamping, touring, and lodge campsite just 1 mile from Hadrian's Wall.",
         facilities: {
-          allFacilities: [Facility.Camping],
+          allFacilities: [Facility.Camping, Facility.Shop, Facility.WiFi],
           credit: {
-            displayText: "...",
-            linkingUrl: "..."
+            displayText: "Herding Hill Farm",
+            linkingUrl: "https://www.herdinghillfarm.co.uk/"
           }
         }
       },
@@ -175,7 +179,9 @@ export const stopsData: Route[] = [
         name: "Haltwhistle Market Place",
         lat: 54.97043189999999,
         long: -2.458997799999999,
-        nearestPoint: 391
+        nearestPoint: 391,
+        details:
+          "Haltwhistle is a small market town in Northumberland. In Haltwhistle, you can find an array of supermarkets to stock up on essentials, as well as local hotels, restaurants, and pubs."
       },
       {
         sequence: 15,
@@ -183,7 +189,14 @@ export const stopsData: Route[] = [
         lat: 54.968403,
         long: -2.463063,
         nearestPoint: 397,
-        details: "Rail connections towards Newcastle upon Tyne and Carlisle, including Hexham."
+        details: "Rail connections towards Newcastle upon Tyne and Carlisle, including Hexham.",
+        facilities: {
+          allFacilities: [Facility.CarPark, Facility.WiFi],
+          credit: {
+            displayText: "Northern Rail",
+            linkingUrl: "https://www.northernrailway.co.uk/stations/haltwhistle"
+          }
+        }
       },
       {
         sequence: 16,
@@ -191,11 +204,12 @@ export const stopsData: Route[] = [
         lat: 54.981911,
         long: -2.533252000000001,
         nearestPoint: 431,
+        details: "Greenhead hotel offers cosy rooms and a dining area on the Northumberland border.",
         facilities: {
-          allFacilities: [Facility.Hotel],
+          allFacilities: [Facility.Hotel, Facility.FoodAndDrink],
           credit: {
-            displayText: "...",
-            linkingUrl: "..."
+            displayText: "Greenhead Hotel",
+            linkingUrl: "https://www.greenheadbrampton.co.uk/"
           }
         }
       },

@@ -13,7 +13,7 @@ const customTheme = extendTheme({
   colors: {
     primary: "rgb(225, 37, 25)",
     secondary: "rgb(251, 168, 0)",
-    backdrop: "#daf0d7",
+    backdrop: "#e5f5e3",
     transparentBlack: "rgba(0, 0, 0, 0.5)",
     borderColor: "rgb(229, 231, 235)"
   },
