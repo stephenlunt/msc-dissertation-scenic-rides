@@ -4,8 +4,6 @@
  * File description: The data seed and types for bus routes.
  */
 
-import { ImageSourcePropType } from "react-native";
-
 import type { Credit, ImageCredit } from "./types";
 
 export type BusRoute = {

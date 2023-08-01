@@ -19,7 +19,7 @@ type Props = {
  * a vertical scroll bar which updates as the route goes on.
  */
 export default function ProgressBar({ percentage }: Props) {
-  const [adjustedPercentage, setAdjustedPercentage] = useState<number>();
+  const [adjustedPercentage, setAdjustedPercentage] = useState<number>(2);
 
   /**
    * When the percentage prop is updated from it's root component in
@@ -64,7 +64,7 @@ export default function ProgressBar({ percentage }: Props) {
           bgColor="white"
           borderColor="borderColor"
           borderWidth={1}
-          borderRadius="100%"
+          borderRadius={100}
           alignItems="center"
           justifyContent="center"
           justifyItems="center"

@@ -20,7 +20,7 @@ import FacilityIcon from "./FacilityIcon";
 type StopListComponentProp = NativeStackNavigationProp<RootStackParamList, "Attraction">;
 
 type Props = {
-  routeId: string;
+  busRouteId: string;
   stops: BusStop[];
   attractions: Attraction[];
 };
@@ -29,7 +29,7 @@ type Props = {
  * The stop list component renders each of the bus stops with their attractions
  * for the Guidebook screen and sets up linking to the Attraction screens.
  */
-export default function StopList({ routeId, stops, attractions }: Props) {
+export default function StopList({ busRouteId, stops, attractions }: Props) {
   const navigation = useNavigation<StopListComponentProp>();
 
   return (
@@ -56,7 +56,7 @@ export default function StopList({ routeId, stops, attractions }: Props) {
                       onPress={() =>
                         navigation.navigate("Attraction", {
                           id: currentAttraction.id,
-                          routeId: routeId
+                          busRouteId: busRouteId
                         })
                       }
                       bgColor="green.300"

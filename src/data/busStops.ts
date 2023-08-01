@@ -7,7 +7,7 @@
 import { Facility } from "../components/FacilityIcon";
 import { Credit } from "./types";
 
-type Route = {
+type BusRoute = {
   id: string;
   totalStops: number;
   stops: BusStop[];
@@ -29,7 +29,7 @@ type Facilities = {
   credit: Credit;
 };
 
-export const stopsData: Route[] = [
+export const stopsData: BusRoute[] = [
   {
     id: "AD122",
     totalStops: 18,

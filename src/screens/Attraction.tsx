@@ -22,14 +22,14 @@ type AttractionScreenProps = NativeStackScreenProps<RootStackParamList, "Attract
  */
 export default function Attraction({ route, navigation }: AttractionScreenProps) {
   // Extract an attraction and route id parameter from the navigation props.
-  const { id, routeId } = route.params;
+  const { id, busRouteId } = route.params;
   const [attraction, setAttraction] = useState<Attraction>();
 
   /**
    * Filter the attractions data by route and attraction id and store in React state.
    */
   useEffect(() => {
-    const routeSpecificAttractions = attractionData.filter((route) => route.id === routeId)[0].attractions;
+    const routeSpecificAttractions = attractionData.filter((route) => route.id === busRouteId)[0].attractions;
     setAttraction(routeSpecificAttractions.filter((attraction) => attraction.id === id)[0]);
   }, []);
 

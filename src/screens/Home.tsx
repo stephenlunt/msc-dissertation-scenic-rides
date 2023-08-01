@@ -21,10 +21,10 @@ type HomeScreenProp = NativeStackNavigationProp<RootStackParamList, "Home">;
  */
 export default function Home() {
   const navigation = useNavigation<HomeScreenProp>();
-  const [busRoutes, setRoutes] = useState<BusRoute[]>();
+  const [busRoutes, setBusRoutes] = useState<BusRoute[]>();
 
   useEffect(() => {
-    setRoutes(busRoutesData);
+    setBusRoutes(busRoutesData);
   }, []);
 
   return busRoutes ? (

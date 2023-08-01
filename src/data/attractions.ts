@@ -4,10 +4,10 @@
  * File description: The data seed and types for attractions along routes.
  */
 
-import type { Coordinate, Credit, ImageCredit } from "./types";
+import type { Credit, ImageCredit } from "./types";
 import { AttractionCategory } from "../components/AttractionIcon";
 
-export type Route = {
+export type BusRoute = {
   id: string;
   totalAttractions: number;
   attractions: Attraction[];
@@ -18,7 +18,10 @@ export type Attraction = {
   name: string;
   icon: AttractionCategory;
   nearestStop: number;
-  coordinates: Coordinate;
+  coordinates: {
+    lat: number;
+    long: number;
+  };
   image: ImageCredit;
   map: ImageCredit;
   description: string;
@@ -44,7 +47,7 @@ type ContactDetails = {
   };
 };
 
-export const attractionData: Route[] = [
+export const attractionData: BusRoute[] = [
   {
     id: "AD122",
     totalAttractions: 12,

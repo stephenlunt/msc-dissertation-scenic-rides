@@ -7,10 +7,10 @@
 
 import { LocationObject } from "expo-location";
 
-import { RoutePoint } from "../data/routePoints";
-import { BusStop } from "../data/busStops";
+import { type BusRoutePoint } from "../data/routePoints";
+import { type BusStop } from "../data/busStops";
 import { haversine } from "./haversine";
-import { Direction } from "../data/types";
+import { Coordinate, Direction } from "../data/types";
 
 /**
  * The ProgressReport object type is returned back to the React component.
@@ -32,22 +32,19 @@ type ProgressReport = {
  * @returns progress report detail the nearest point, last stop passed, and next stop to come.
  */
 export default function calculateRouteProgress(
-  points: RoutePoint[],
+  points: BusRoutePoint[],
   stops: BusStop[],
   geolocation: LocationObject,
   direction: Direction
 ): ProgressReport {
-  const currentLocation = {
-    lat: geolocation.coords.latitude,
-    long: geolocation.coords.longitude
-  };
+  const currentLocation = new Coordinate(geolocation.coords.latitude, geolocation.coords.longitude);
 
   let nearestPoint = 1;
   let lowestDistanceAway = Number.MAX_SAFE_INTEGER;
 
   // Loops over each point to find the nearest.
   for (let p of points) {
-    let distanceAway = haversine(currentLocation, { lat: p.lat, long: p.long });
+    let distanceAway = haversine(currentLocation, p.coordinate);
 
     if (distanceAway < lowestDistanceAway) {
       lowestDistanceAway = distanceAway;

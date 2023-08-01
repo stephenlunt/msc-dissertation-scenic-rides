@@ -29,7 +29,7 @@ export type RootStackParamList = {
   Home: undefined;
   BusRoute: { id: string };
   Guidebook: { id: string };
-  Attraction: { id: number; routeId: string };
+  Attraction: { id: number; busRouteId: string };
   Stop: { id: number };
   About: undefined;
   Help: undefined;

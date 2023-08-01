@@ -7,12 +7,34 @@
 import { ImageSourcePropType } from "react-native";
 
 /**
- * A latitude and longitude point.
+ * A latitude and longitude point class. A class is used here instead of a type
+ * to validate coordinate points are correct.
  */
-export type Coordinate = {
-  lat: number;
-  long: number;
-};
+export class Coordinate {
+  private lat: number;
+  private long: number;
+
+  public constructor(lat: number, long: number) {
+    if (lat > 90 || lat < -90) {
+      throw new Error("Invalid latitude value.");
+    }
+
+    if (long > 180 || long < -180) {
+      throw new Error("Invalid longitude value.");
+    }
+
+    this.lat = lat;
+    this.long = long;
+  }
+
+  public getLat(): number {
+    return this.lat;
+  }
+
+  public getLong(): number {
+    return this.long;
+  }
+}
 
 /**
  * An accreditation containing a display friendly text and linking URL.

@@ -16,9 +16,9 @@ import { SCROLL_HEIGHT } from "../const";
 import { type BusRoute, busRoutesData } from "../data/busRoutes";
 import { type BusStop, stopsData } from "../data/busStops";
 import { type Attraction, attractionData } from "../data/attractions";
-import { type RoutePoint, routePoints } from "../data/routePoints";
+import { type BusRoutePoint, routePoints } from "../data/routePoints";
 import { Direction } from "../data/types";
-import calculateRouteProgress from "../util/calculateProgress";
+import calculateRouteProgress from "../util/calculateRouteProgress";
 import calculateRoutePercentage from "../util/calculateRoutePercentage";
 import ProgressBar from "../components/ProgressBar";
 import StopList from "../components/StopList";
@@ -40,7 +40,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   const [busRoute, setBusRoute] = useState<BusRoute>();
   const [stops, setStops] = useState<BusStop[]>();
   const [attractions, setAttractions] = useState<Attraction[]>();
-  const [points, setPoints] = useState<RoutePoint[]>();
+  const [points, setPoints] = useState<BusRoutePoint[]>();
 
   // Functional state
   const [direction, setDirection] = useState<Direction>(Direction.Outbound);
@@ -206,7 +206,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         </Text>
         <Flex flexDirection="row" my={4}>
           <ProgressBar percentage={routePercentage} />
-          <StopList routeId={id} stops={stops} attractions={attractions} />
+          <StopList busRouteId={id} stops={stops} attractions={attractions} />
         </Flex>
       </ScrollView>
     </View>
