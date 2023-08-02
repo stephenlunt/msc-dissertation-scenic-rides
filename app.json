@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "dissertation",
-    "slug": "dissertation",
+    "name": "Scenic Rides",
+    "slug": "scenic-rides",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

@@ -1,7 +1,31 @@
-# A Mobile Guidebook for a Scenic Bus Route
+# Scenic Rides
+
+Scenic Rides is a mobile guidebook for scenic bus routes in the North East of England. It's a React Native project for iOS and Android mobile devices.
 
 
 ## Project Commands
+
+Before running the project, you must have the core dependencies installed. This includes [Node.js](https://nodejs.org/en) and a emulator (such as [Xcode](https://developer.apple.com/xcode/) or [Android Studio](https://developer.android.com/studio)).
+
+### Development environment
+
+To start a development environment run the following commands:
+
+- Android: `npm run android`
+- iOS: `npm run ios`
+
+The development app can be access through a emulator or the Expo Go mobile app.
+
+### Testing
+
+Use the following command to run Jest unit tests:
+
+- Testing: `npm run test`
+
+
+### Build
+
+TODO: ...
 
 
 ## Project structure
