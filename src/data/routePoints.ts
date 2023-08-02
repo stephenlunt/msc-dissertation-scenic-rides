@@ -6,7 +6,6 @@
 
 import { Coordinate } from "./types";
 
-
 type BusRoute = {
   id: string;
   points: BusRoutePoint[];

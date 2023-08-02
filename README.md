@@ -14,13 +14,13 @@ To start a development environment run the following commands:
 - Android: `npm run android`
 - iOS: `npm run ios`
 
-The development app can be access through a emulator or the Expo Go mobile app.
+The development app can be access through an emulator or the Expo Go mobile app.
 
 ### Testing
 
 Use the following command to run Jest unit tests:
 
-- Testing: `npm run test`
+- Testing: `npm test`
 
 
 ### Build
@@ -73,8 +73,9 @@ Open source software used in the production of this application:
 - Expo, MIT Licence, [Website](https://expo.dev/home), [GitHub](https://github.com/expo/expo)
 - Native Base, MIT Licence, [Website](https://nativebase.io/), [GitHub](https://github.com/GeekyAnts/nativebase)
 - React Navigation, MIT Licence, [Website](https://reactnavigation.org/), [GitHub](https://github.com/react-navigation/react-navigation)
+- Jest, MIT Licence, [Website](https://jestjs.io/), [GitHub](https://github.com/jestjs/jest)
 
-The following accreditations are represent a complete list of sources and tools that were used for production
+The following accreditations represent a complete list of sources and tools that were used for production
 of content (text, images, maps, data points) for this application:
 
 - [Go North East - AD122](https://www.gonortheast.co.uk/ad122/) - Route information and an image of the AD122 bus.
