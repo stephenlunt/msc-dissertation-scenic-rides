@@ -33,7 +33,7 @@ export default function StopList({ busRouteId, stops, attractions }: Props) {
   const navigation = useNavigation<StopListComponentProp>();
 
   return (
-    <Flex flexDirection="column" flexShrink={1} mr={4}>
+    <Flex flexDirection="column" flexShrink={1}>
       {/* For each bus stop, a box is created */}
       {stops.map((stop, index) => {
         let multipleAttractions: boolean = stop.attractions ? stop.attractions.length > 1 : false;

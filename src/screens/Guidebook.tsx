@@ -51,7 +51,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
   // Geolocation state
   const [geolocation, setGeolocation] = useState<Location.LocationObject>();
-  const [locationError, setLocationError] = useState<string>();
+  const [locGranted, setLocGranted] = useState<boolean>(false);
 
   // Refs
   const scrollViewRef = useRef<null | ScrollView>(null);
@@ -80,9 +80,11 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
       (async () => {
         let { status } = await Location.requestForegroundPermissionsAsync();
         if (status !== "granted") {
-          setLocationError("Showing static screen as location was denied");
+          setLocGranted(false);
           return;
         }
+
+        setLocGranted(true);
 
         if (locationSubscription === undefined) {
           locationSubscription = await Location.watchPositionAsync(options, (location) => {
@@ -204,8 +206,8 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
         <Text pt={2} mx={4}>
           Explore what the {id} has to offer at every stop along the route.
         </Text>
-        <Flex flexDirection="row" my={4}>
-          <ProgressBar percentage={routePercentage} />
+        <Flex flexDirection="row" my={4} mx={4}>
+          {locGranted ? <ProgressBar percentage={routePercentage} /> : null}
           <StopList busRouteId={id} stops={stops} attractions={attractions} />
         </Flex>
       </ScrollView>
