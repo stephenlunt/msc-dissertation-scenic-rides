@@ -50,7 +50,7 @@ export const stopsData: BusRoute[] = [
         nearestPoint: 7,
         details: "Rail connections towards Newcastle upon Tyne and Carlisle.",
         facilities: {
-          allFacilities: [Facility.Toilets, Facility.CarPark, Facility.WiFi],
+          allFacilities: [Facility.Toilets, Facility.CarPark],
           credit: {
             displayText: "Northern Rail",
             linkingUrl: "https://www.northernrailway.co.uk/stations/hexham"
@@ -63,7 +63,7 @@ export const stopsData: BusRoute[] = [
         lat: 54.98994399999999,
         long: -2.115331,
         nearestPoint: 29,
-        details: "Acomb is a small village just north of Hexham. "
+        details: "Acomb is a small village just north of Hexham. Here you can find several small hotels and inns for staying the night or food & drink."
       },
       {
         sequence: 3,
@@ -189,7 +189,7 @@ export const stopsData: BusRoute[] = [
         lat: 54.968403,
         long: -2.463063,
         nearestPoint: 397,
-        details: "Rail connections towards Newcastle upon Tyne and Carlisle, including Hexham.",
+        details: "Rail connections towards Newcastle upon Tyne, Carlisle, and Hexham.",
         facilities: {
           allFacilities: [Facility.CarPark, Facility.WiFi],
           credit: {
@@ -204,7 +204,7 @@ export const stopsData: BusRoute[] = [
         lat: 54.981911,
         long: -2.533252000000001,
         nearestPoint: 431,
-        details: "Greenhead hotel offers cosy rooms and a dining area on the Northumberland border.",
+        details: "Greenhead hotel offers cosy rooms and dining on the Northumberland border.",
         facilities: {
           allFacilities: [Facility.Hotel, Facility.FoodAndDrink],
           credit: {

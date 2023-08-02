@@ -10,7 +10,7 @@ import { ScrollView, Heading, Box, Flex, Text, Link } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import { type Attraction, attractionData } from "../data/attractions";
-import { AttractionIconSwitcher } from "../components/AttractionIcon";
+import { AttractionCategory, AttractionIconSwitcher } from "../components/AttractionIcon";
 import ImageCard from "../components/ImageCard";
 import CreditFooter from "../components/CreditFooter";
 
@@ -52,11 +52,23 @@ export default function Attraction({ route, navigation }: AttractionScreenProps)
       <Heading pt={4} pb={2}>
         Attraction Type
       </Heading>
-      <Flex flexDirection="row" alignItems="center">
+      <Flex flexDirection="row" alignItems="center" mb={2}>
         <AttractionIconSwitcher attraction={attraction.icon} color="black" />
         <Text pl={2}>{attraction.icon}</Text>
       </Flex>
-      <Text>{attraction.freeEntry ? "Free entry" : "Paid entry"}</Text>
+      <Text>
+        {attraction.freeEntry ? (
+          <Flex flexDirection="row" alignItems="center">
+            <AttractionIconSwitcher attraction={AttractionCategory.FreeEntry} color="black" />
+            <Text pl={2}>Free Entry</Text>
+          </Flex>
+        ) : (
+          <Flex flexDirection="row" alignItems="center">
+            <AttractionIconSwitcher attraction={AttractionCategory.PaidEntry} color="black" />
+            <Text pl={2}>Paid Entry</Text>
+          </Flex>
+        )}
+      </Text>
 
       <Heading pt={4} pb={2}>
         Opening Times

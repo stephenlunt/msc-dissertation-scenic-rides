@@ -13,7 +13,9 @@ export enum AttractionCategory {
   Castle = "Castle / Fort",
   Church = "Church",
   Museum = "Museum",
-  Wall = "Wall Section / Ruin"
+  Wall = "Wall Section / Ruin",
+  FreeEntry = "Free Entry",
+  PaidEntry = "Paid Entry"
 }
 
 // Props type definitions.
@@ -47,6 +49,10 @@ export function AttractionIconSwitcher({ attraction, color }: IconSwitcherProps)
       return <MaterialCommunityIcons name="wall" size={24} color={color} />;
     case AttractionCategory.Church:
       return <MaterialCommunityIcons name="church" size={24} color={color} />;
+    case AttractionCategory.FreeEntry:
+      return <MaterialIcons name="money-off" size={24} color="black" />;
+    case AttractionCategory.PaidEntry:
+      return <MaterialIcons name="attach-money" size={24} color="black" />;
     default:
       return <MaterialCommunityIcons name="alert-circle-outline" size={24} color={color} />;
   }
