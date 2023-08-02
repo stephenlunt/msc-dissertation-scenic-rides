@@ -2,6 +2,7 @@
  * Last modified: 01-08-2023
  * Modifying author: Stephen Lunt
  * File description: Tests for the haversine.ts implementation
+ * Testing documentation: https://jestjs.io/docs/expect
  */
 
 import { test, expect } from "@jest/globals";
@@ -15,10 +16,10 @@ const pointB = new Coordinate(54.9731132, -1.6252289);
 const pointC = new Coordinate(54.9663464, -2.1446354);
 
 /**
- * https://www.omnicalculator.com/other/latitude-longitude-distance was used as a 
+ * https://www.omnicalculator.com/other/latitude-longitude-distance was used as a
  * reputable online calculator to provide test answers.
- * 
- * To simplify test cases with floating points, the return value is rounded to the 
+ *
+ * To simplify test cases with floating points, the return value is rounded to the
  * nearest integer.
  */
 test("Test the distance between pointA and pointB is correct", () => {
@@ -26,9 +27,9 @@ test("Test the distance between pointA and pointB is correct", () => {
 });
 
 test("Test the distance between pointA and pointC is correct", () => {
-  expect(Math.round(haversine(pointA, pointC))).toEqual(34763)
-})
+  expect(Math.round(haversine(pointA, pointC))).toEqual(34763);
+});
 
 test("Test the distance between pointB and pointC is correct", () => {
-  expect(Math.round(haversine(pointB, pointC))).toEqual(33161)
-})
+  expect(Math.round(haversine(pointB, pointC))).toEqual(33161);
+});

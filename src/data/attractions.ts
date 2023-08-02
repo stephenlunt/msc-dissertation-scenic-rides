@@ -269,7 +269,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Built by the soliders of Carrawburgh, this structure stands as a fascinating temple to the god Mithras.\n\nMithraism was a Roman religion inspired by a god originally worshipped in the eastern Empire. According to legend, Mithras captured and killed a sacred bull in a cave, which Mithraic temples were intended to evoke.\n\nThe temple was built by soldiers at the fort around AD 200 and destroyed about AD 350. Three altars found here (replicas stand in the temple) were dedicated by commanding officers of the unit stationed here, the First Cohort of Batavians from the Rhineland.",
+          "Built by the soldiers of Carrawburgh, this structure stands as a fascinating temple to the god Mithras.\n\nMithraism was a Roman religion inspired by a god originally worshipped in the eastern Empire. According to legend, Mithras captured and killed a sacred bull in a cave, which Mithraic temples were intended to evoke.\n\nThe temple was built by soldiers at the fort around AD 200 and destroyed about AD 350. Three altars found here (replicas stand in the temple) were dedicated by commanding officers of the unit stationed here, the First Cohort of Batavians from the Rhineland.",
         freeEntry: true,
         openingTimes: {
           other: "Open any reasonable time during daylight hours"
