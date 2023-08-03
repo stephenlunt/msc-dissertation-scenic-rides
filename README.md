@@ -25,8 +25,20 @@ Use the following command to run Jest unit tests:
 
 ### Build
 
-TODO: ...
+Documentation on the Expo build process is located here: [https://docs.expo.dev/build/setup/](https://docs.expo.dev/build/setup/)
 
+1. Install the EAS CLI: `npm install -g eas-cli`
+2. Login to an Expo account: `eas login`
+3. Configure the build: `eas build:configure`
+4. Run a build: `eas build --platform all`
+   
+   - Android only: `eas build --platform android`
+
+   - iOS only: `eas build --platform ios` (Note: this requires a paid Apple Developer account to complete)
+
+5. Deploy or run locally on an emulator.
+   
+   - Run the build on an Android emulator: `eas build:run -p android`
 
 ## Project structure
 
