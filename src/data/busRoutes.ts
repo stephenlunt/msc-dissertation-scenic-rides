@@ -25,7 +25,7 @@ export const busRoutesData: BusRoute[] = [
     origin: "Hexham",
     destination: "Haltwhistle",
     image: {
-      imgSrc: require("../assets/img/ad122_bus.jpg"),
+      imgSrc: require("../assets/img/ad122_bus.webp"),
       displayText: "Go North East",
       linkingUrl: "https://www.gonortheast.co.uk/ad122/"
     },

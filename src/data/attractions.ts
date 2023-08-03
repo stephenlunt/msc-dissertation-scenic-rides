@@ -62,7 +62,7 @@ export const attractionData: BusRoute[] = [
           long: -2.1025
         },
         image: {
-          imgSrc: require("../assets/img/hexham_abbey.jpg"),
+          imgSrc: require("../assets/img/hexham_abbey.webp"),
           displayText: "Hexham Abbey",
           linkingUrl: "https://www.hexhamabbey.org.uk/"
         },
@@ -103,7 +103,7 @@ export const attractionData: BusRoute[] = [
           long: -2.13568
         },
         image: {
-          imgSrc: require("../assets/img/chesters_bridge.jpg"),
+          imgSrc: require("../assets/img/chesters_bridge.webp"),
           displayText: "English Heritage",
           linkingUrl: "https://www.english-heritage.org.uk/visit/places/chesters-bridge-abutment-hadrians-wall/"
         },
@@ -142,7 +142,7 @@ export const attractionData: BusRoute[] = [
           long: -2.12432
         },
         image: {
-          imgSrc: require("../assets/img/brunton_turret.jpg"),
+          imgSrc: require("../assets/img/brunton_turret.webp"),
           displayText: "English Heritage",
           linkingUrl: "https://www.english-heritage.org.uk/visit/places/brunton-turret-hadrians-wall/"
         },
@@ -181,7 +181,7 @@ export const attractionData: BusRoute[] = [
           long: -2.11239
         },
         image: {
-          imgSrc: require("../assets/img/planetrees.jpg"),
+          imgSrc: require("../assets/img/planetrees.webp"),
           displayText: "English Heritage",
           linkingUrl: "https://www.english-heritage.org.uk/visit/places/planetrees-roman-wall-hadrians-wall/"
         },
@@ -220,7 +220,7 @@ export const attractionData: BusRoute[] = [
           long: -2.13788
         },
         image: {
-          imgSrc: require("../assets/img/chesters_fort.jpg"),
+          imgSrc: require("../assets/img/chesters_fort.webp"),
           displayText: "English Heritage",
           linkingUrl: "https://www.english-heritage.org.uk/visit/places/chesters-roman-fort-and-museum-hadrians-wall/"
         },
@@ -260,7 +260,7 @@ export const attractionData: BusRoute[] = [
           long: -2.2225
         },
         image: {
-          imgSrc: require("../assets/img/temple_of_mithras.jpg"),
+          imgSrc: require("../assets/img/temple_of_mithras.webp"),
           displayText: "English Heritage",
           linkingUrl: "https://www.english-heritage.org.uk/visit/places/temple-of-mithras-carrawburgh-hadrians-wall/"
         },
@@ -299,7 +299,7 @@ export const attractionData: BusRoute[] = [
           long: -2.33031
         },
         image: {
-          imgSrc: require("../assets/img/housesteads_fort.jpg"),
+          imgSrc: require("../assets/img/housesteads_fort.webp"),
           displayText: "English Heritage",
           linkingUrl: "https://www.english-heritage.org.uk/visit/places/housesteads-roman-fort-hadrians-wall/"
         },
@@ -339,7 +339,7 @@ export const attractionData: BusRoute[] = [
           long: -2.38815
         },
         image: {
-          imgSrc: require("../assets/img/the_sill.jpg"),
+          imgSrc: require("../assets/img/the_sill.webp"),
           displayText: "The Sill",
           linkingUrl: "https://www.thesill.org.uk/"
         },
@@ -380,7 +380,7 @@ export const attractionData: BusRoute[] = [
           long: -2.36056
         },
         image: {
-          imgSrc: require("../assets/img/vindolanda.jpg"),
+          imgSrc: require("../assets/img/vindolanda.webp"),
           displayText: "Vindolanda Charitable Trust",
           linkingUrl: "https://www.vindolanda.com/roman-vindolanda-fort-museum"
         },
@@ -425,7 +425,7 @@ export const attractionData: BusRoute[] = [
           long: -2.44581
         },
         image: {
-          imgSrc: require("../assets/img/milecastle_42.jpg"),
+          imgSrc: require("../assets/img/milecastle_42.webp"),
           displayText: "Roman Britain",
           linkingUrl: "https://www.roman-britain.co.uk/places/cawfields/"
         },

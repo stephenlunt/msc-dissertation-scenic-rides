@@ -27,6 +27,7 @@ export default function About() {
         <Link href="https://expo.dev/home">Expo (MIT)</Link>
         <Link href="https://nativebase.io/">Native Base (MIT)</Link>
         <Link href="https://reactnavigation.org/">React Navigation (MIT)</Link>
+        <Link href="https://jestjs.io/">Jest (MIT)</Link>
       </Flex>
 
       <Heading>All accreditations</Heading>
