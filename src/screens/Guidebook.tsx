@@ -8,7 +8,7 @@ import { useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScrollView } from "react-native";
-import { View, Flex, Box, Text, Heading, IconButton } from "native-base";
+import { View, Flex, Text, Heading, Button, IconButton } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
@@ -213,6 +213,25 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
       </ScrollView>
     </View>
   ) : (
-    <Box>Loading route data...</Box>
+    <View>
+      <Heading py={4} textAlign="center">
+        Error
+      </Heading>
+      <Text py={4}>
+        Sorry, an error occurred loading the bus route data. Please return home or restart the application.
+      </Text>
+      <Button
+        onPress={() => navigation.navigate("Home")}
+        display="flex"
+        justifyContent="center"
+        bgColor="gray.200"
+        px={4}
+        m={1}
+        borderColor="gray.300"
+        borderWidth={1}
+      >
+        <Text fontWeight="bold">Return Home</Text>
+      </Button>
+    </View>
   );
 }

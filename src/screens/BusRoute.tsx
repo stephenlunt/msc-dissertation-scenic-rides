@@ -6,7 +6,7 @@
 
 import { useEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { ScrollView, Box, Heading, Text, Pressable, Image, Link } from "native-base";
+import { View, ScrollView, Box, Heading, Text, Pressable, Image, Button, Link } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import { type BusRoute, busRoutesData } from "../data/busRoutes";
@@ -55,7 +55,7 @@ export default function BusRoute({ route, navigation }: RouteScreenProps) {
           <Text color="green.900">View the route guidebook</Text>
         </Box>
         <Image
-          source={require("../assets/img/guidebook.jpeg")}
+          source={require("../assets/img/guidebook.webp")}
           alt="View our route guidebook"
           maxWidth={150}
           maxHeight={150}
@@ -78,6 +78,25 @@ export default function BusRoute({ route, navigation }: RouteScreenProps) {
       <CreditFooter credits={routeDetails.credits} />
     </ScrollView>
   ) : (
-    <Box>Invalid bus route</Box>
+    <View>
+      <Heading py={4} textAlign="center">
+        Error
+      </Heading>
+      <Text py={4}>
+        Sorry, an error occurred loading the bus route data. Please return home or restart the application.
+      </Text>
+      <Button
+        onPress={() => navigation.navigate("Home")}
+        display="flex"
+        justifyContent="center"
+        bgColor="gray.200"
+        px={4}
+        m={1}
+        borderColor="gray.300"
+        borderWidth={1}
+      >
+        <Text fontWeight="bold">Return Home</Text>
+      </Button>
+    </View>
   );
 }
