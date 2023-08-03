@@ -5,7 +5,7 @@ Scenic Rides is a mobile guidebook for scenic bus routes in the North East of En
 
 ## Project Commands
 
-Before running the project, you must have the core dependencies installed. This includes [Node.js](https://nodejs.org/en) and a emulator (such as [Xcode](https://developer.apple.com/xcode/) or [Android Studio](https://developer.android.com/studio)).
+Before running the project, you must have the core dependencies installed. This includes [Node.js](https://nodejs.org/en) and a emulator (such as [Xcode](https://developer.apple.com/xcode/) or [Android Studio](https://developer.android.com/studio)). `npm install` is required before first-run.
 
 ### Development environment
 
