@@ -169,11 +169,11 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
     if (direction === Direction.Inbound) {
       setDirection(Direction.Outbound);
-      const orderStops = stops.sort((stopA, stopB) => stopA.sequence - stopB.sequence);
+      const orderStops = [...stops].sort((stopA, stopB) => stopA.sequence - stopB.sequence);
       setStops(orderStops);
     } else {
       setDirection(Direction.Inbound);
-      const orderStops = stops.sort((stopA, stopB) => stopB.sequence - stopA.sequence);
+      const orderStops = [...stops].sort((stopA, stopB) => stopB.sequence - stopA.sequence);
       setStops(orderStops);
     }
   }

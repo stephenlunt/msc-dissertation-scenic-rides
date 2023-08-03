@@ -15,7 +15,7 @@ import { Coordinate, Direction } from "../data/types";
 /**
  * The ProgressReport object type is returned back to the React component.
  */
-type ProgressReport = {
+export type ProgressReport = {
   nearestPoint: number;
   lastStop: BusStop | undefined;
   nextStop: BusStop | undefined;
