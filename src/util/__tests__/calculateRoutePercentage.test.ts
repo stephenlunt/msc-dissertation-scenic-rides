@@ -8,7 +8,6 @@
 import { test, expect } from "@jest/globals";
 
 import calculateRoutePercentage from "../calculateRoutePercentage";
-import { type BusRoutePoint, routePoints } from "../../data/routePoints";
 import { type BusStop, stopsData } from "../../data/busStops";
 import { Direction } from "../../data/types";
 

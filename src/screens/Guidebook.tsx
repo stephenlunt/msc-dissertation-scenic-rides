@@ -59,7 +59,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   const scrollViewRef = useRef<null | ScrollView>(null);
 
   /**
-   * Filter and store the data points for the route in state on screen render.
+   * Filter and store the data points for the route in state on-screen render.
    */
   useEffect(() => {
     setBusRoute(busRoutesData.filter((busRoute) => busRoute.id === id)[0]);
@@ -70,7 +70,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
   /**
    * When the screen loads, request permission to use geolocation features and
-   * use the expo location library to subscribe to the users location.
+   * use the expo location library to subscribe to the user's location.
    *
    * Source documentation:
    * - https://docs.expo.dev/versions/latest/sdk/location/#locationsubscription
@@ -106,7 +106,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   };
 
   /**
-   * When the guidebook screen is left, unsubscribe from watching the users location.
+   * When the guidebook screen is left, unsubscribe from watching the user's location.
    */
   useEffect(() => {
     navigation.addListener("blur", () => {

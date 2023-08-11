@@ -51,7 +51,7 @@ export default function StopList({ busRouteId, stops, attractions }: Props) {
             {/* If the stop has attractions, the attractions are rendered on a horizontal scroll ScrollView
             and width adjusted based on if there are greater than 1 attraction for that stop */}
             {stop.attractions ? (
-              <ScrollView horizontal={multipleAttractions ? true : false}>
+              <ScrollView horizontal={multipleAttractions}>
                 {stop.attractions.map((attractionId, index) => {
                   let currentAttraction = attractions.filter((attraction) => attraction.id === attractionId)[0];
 

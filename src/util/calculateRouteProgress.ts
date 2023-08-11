@@ -2,7 +2,7 @@
  * Last modified: 26-07-2023
  * Modifying author: Stephen Lunt
  * File description: Function for calculating the current progress along the route
- * in terms of nearest point and bus stops.
+ * in terms of the nearest point and bus stops.
  */
 
 import { LocationObject } from "expo-location";
@@ -13,7 +13,7 @@ import { haversine } from "./haversine";
 import { Coordinate, Direction } from "../data/types";
 
 /**
- * The ProgressReport object type is returned back to the React component.
+ * The ProgressReport object type is returned to the React component.
  */
 export type ProgressReport = {
   nearestPoint: number;

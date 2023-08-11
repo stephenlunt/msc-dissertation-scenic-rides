@@ -11,8 +11,8 @@ import { ImageSourcePropType } from "react-native";
  * to validate coordinate points are correct.
  */
 export class Coordinate {
-  private lat: number;
-  private long: number;
+  private readonly lat: number;
+  private readonly long: number;
 
   public constructor(lat: number, long: number) {
     if (lat > 90 || lat < -90) {

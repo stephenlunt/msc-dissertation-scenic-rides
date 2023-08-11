@@ -6,7 +6,7 @@
  */
 
 import { useState } from "react";
-import { Box, Heading, Pressable, Text } from "native-base";
+import { Box, Pressable, Text } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 
 type Props = {

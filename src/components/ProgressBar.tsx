@@ -25,7 +25,7 @@ export default function ProgressBar({ percentage }: Props) {
   const [adjustedPercentage, setAdjustedPercentage] = useState<number>(2);
 
   /**
-   * When the percentage prop is updated from it's root component in
+   * When the percentage prop is updated from its root component in
    * Guidebook.tsx, an adjustment is applied on it. This is purely stylistic
    * for account for upper/lower bounds.
    */

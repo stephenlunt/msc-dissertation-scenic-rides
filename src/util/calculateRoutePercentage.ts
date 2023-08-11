@@ -17,7 +17,7 @@ const STYLIST_ADJUSTMENT = 1;
  * @param stops an array of stops on the route.
  * @param lastStop the last stop passed.
  * @param nextStop the next stop to come.
- * @param nearestPoint the nearest point to the users geolocation.
+ * @param nearestPoint the nearest point to the user's geolocation.
  * @param direction the direction of travel.
  * @returns a total percentage of the route travelled.
  */
