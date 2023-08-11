@@ -28,6 +28,11 @@ type Props = {
 /**
  * The stop list component renders each of the bus stops with their attractions
  * for the Guidebook screen and sets up linking to the Attraction screens.
+ *
+ * @param busRouteId the id of the bus route being displayed.
+ * @param stops a list of bus stops for the route.
+ * @param attractions a list of attractions for the route.
+ * @returns a list of bus stops and attraction for a bus route.
  */
 export default function StopList({ busRouteId, stops, attractions }: Props) {
   const navigation = useNavigation<StopListComponentProp>();
@@ -43,7 +48,7 @@ export default function StopList({ busRouteId, stops, attractions }: Props) {
             <Heading pb={2}>{stop.name}</Heading>
             <Badge colorScheme="info" width="20" mb={2}>{`STOP ${index + 1}`}</Badge>
 
-            {/* If the stop has attractions, the attractions are render on a horizontal scroll ScrollView
+            {/* If the stop has attractions, the attractions are rendered on a horizontal scroll ScrollView
             and width adjusted based on if there are greater than 1 attraction for that stop */}
             {stop.attractions ? (
               <ScrollView horizontal={multipleAttractions ? true : false}>
@@ -95,6 +100,7 @@ export default function StopList({ busRouteId, stops, attractions }: Props) {
                 </Heading>
                 <Text>{stop.details}</Text>
 
+                {/* If a stop has no attractions, its facilities are listed. */}
                 {stop.facilities ? (
                   <Box mt={2}>
                     <Heading size="sm" mb={1}>

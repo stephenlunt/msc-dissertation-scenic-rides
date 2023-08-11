@@ -41,7 +41,7 @@ const customTheme = extendTheme({
 
 export default customTheme;
 
-// Ensures TypeScript knows types of custom theme.
+// Extend custom theme to TypeScript types.
 type CustomThemeType = typeof customTheme;
 
 declare module "native-base" {

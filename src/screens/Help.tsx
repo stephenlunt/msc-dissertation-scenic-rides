@@ -9,6 +9,11 @@ import { ScrollView, Text } from "native-base";
 
 import FaqDropdown from "../components/FaqDropdown";
 
+/**
+ * The React default component export for the help screen.
+ *
+ * @returns the help screen component.
+ */
 export default function Help() {
   return (
     <ScrollView mx={4} pb={4}>

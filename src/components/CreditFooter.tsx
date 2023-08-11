@@ -14,6 +14,9 @@ type Props = {
 
 /**
  * Returns a heading and list of all credits passed in as props.
+ *
+ * @param credits a credit containing a link and display text.
+ * @returns a footer component to cite all credits.
  */
 export default function CreditFooter({ credits }: Props) {
   return (

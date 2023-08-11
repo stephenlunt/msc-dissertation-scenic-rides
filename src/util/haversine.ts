@@ -9,19 +9,17 @@
 import { Coordinate } from "../data/types";
 
 /**
- * The below two references where used to understand and get an JavaScript implementation of
- * haversine (a function that calculates the distance between two points). It was
- * modified to a TypeScript function as below.
+ * The below reference was used to understand and get a JavaScript implementation of
+ * haversine. It was modified to a TypeScript function as below.
  *
  * Source URLs:
  * - http://www.movable-type.co.uk/scripts/latlong.html
- * - https://en.wikipedia.org/wiki/Haversine_formula
  *
  * @param pointA The first longitude and latitude point.
  * @param pointB The second longitude and latitude point.
  * @returns The distance in metres between pointA and pointB.
  */
-export function haversine(pointA: Coordinate, pointB: Coordinate): number {  
+export function haversine(pointA: Coordinate, pointB: Coordinate): number {
   const R = 6371e3;
 
   const radiansA = pointA.getLat() * (Math.PI / 180);

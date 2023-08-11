@@ -18,11 +18,16 @@ type HomeScreenProp = NativeStackNavigationProp<RootStackParamList, "Home">;
 
 /**
  * The React default component export for the home screen.
+ *
+ * @returns the home screen component.
  */
 export default function Home() {
   const navigation = useNavigation<HomeScreenProp>();
   const [busRoutes, setBusRoutes] = useState<BusRoute[]>();
 
+  /**
+   * Set the list of bus routes.
+   */
   useEffect(() => {
     setBusRoutes(busRoutesData);
   }, []);

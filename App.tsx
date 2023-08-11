@@ -20,7 +20,7 @@ import About from "./src/screens/About";
 import Help from "./src/screens/Help";
 
 /**
- * The RootStackParamList exports the type signatures of each route. It's set up
+ * The RootStackParamList exports the type signatures of each route. Its set up
  * was modified from the following documentation.
  *
  * Source URL: https://reactnavigation.org/docs/typescript
@@ -39,7 +39,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 /**
  * This object controls the theming of the application header and
- * colours scheme. It's set up is modified from the following documentation.
+ * colours scheme. Its set up is modified from the following documentation.
  *
  * Source URL: https://reactnavigation.org/docs/themes/
  */
@@ -56,8 +56,7 @@ const navigatorTheme = {
 };
 
 /**
- * Application wrappers from React Navigator and Native Base UI. Set up is discussed in
- * section 3.6.3 of written dissertation.
+ * Application wrappers from React Navigator and Native Base UI.
  *
  * Source documentation URLs:
  * - https://reactnavigation.org/docs/hello-react-navigation

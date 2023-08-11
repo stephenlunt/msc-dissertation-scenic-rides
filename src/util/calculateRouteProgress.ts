@@ -1,7 +1,7 @@
 /**
  * Last modified: 26-07-2023
  * Modifying author: Stephen Lunt
- * File description: Util function for calculating the current progress along the route
+ * File description: Function for calculating the current progress along the route
  * in terms of nearest point and bus stops.
  */
 

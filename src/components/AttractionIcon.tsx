@@ -24,6 +24,10 @@ type IconSwitcherProps = { attraction: AttractionCategory; color: string };
 
 /**
  * Component to return an icon and attraction type.
+ *
+ * @param attraction the type of attraction.
+ * @param name the name of the attraction.
+ * @returns reusable React component for attraction icons.
  */
 export default function AttractionIcon({ attraction, name }: IconProps) {
   return (
@@ -37,7 +41,11 @@ export default function AttractionIcon({ attraction, name }: IconProps) {
 }
 
 /**
- * Switch function to return the correct MaterialIcon type.
+ * Switch function to return the correct icon type.
+ *
+ * @param attraction the type of attraction.
+ * @param color the desired icon color.
+ * @returns an icon representing the attraction type.
  */
 export function AttractionIconSwitcher({ attraction, color }: IconSwitcherProps) {
   switch (attraction) {

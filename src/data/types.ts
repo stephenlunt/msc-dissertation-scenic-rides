@@ -37,7 +37,7 @@ export class Coordinate {
 }
 
 /**
- * An accreditation containing a display friendly text and linking URL.
+ * An accreditation with a display friendly text and linking URL.
  */
 export type Credit = {
   displayText: string;

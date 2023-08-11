@@ -18,7 +18,9 @@ import CreditFooter from "../components/CreditFooter";
 type AttractionScreenProps = NativeStackScreenProps<RootStackParamList, "Attraction">;
 
 /**
- * The React default component export for the Attraction screen.
+ * The React default component export for the attraction screen.
+ *
+ * @returns the attraction screen component.
  */
 export default function Attraction({ route, navigation }: AttractionScreenProps) {
   // Extract an attraction and route id parameter from the navigation props.

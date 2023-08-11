@@ -5,9 +5,9 @@
  * used on the Guidebook screen.
  */
 
+import { useEffect, useState } from "react";
 import { Flex, Box } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useEffect, useState } from "react";
 
 type Props = {
   percentage: number;
@@ -17,14 +17,17 @@ type Props = {
  * The progress bar component uses a percentage representing the route completion
  * and relative/absolute position UI elements to create the visual effect of
  * a vertical scroll bar which updates as the route goes on.
+ *
+ * @param percentage a percent representing how much of the route is travelled.
+ * @returns a React component for the progress bar.
  */
 export default function ProgressBar({ percentage }: Props) {
   const [adjustedPercentage, setAdjustedPercentage] = useState<number>(2);
 
   /**
    * When the percentage prop is updated from it's root component in
-   * Guidebook.tsx, we apply an adjustment on it. This is purely stylistic
-   * to fix visual bugs at the upper/lower end of the scroll bar.
+   * Guidebook.tsx, an adjustment is applied on it. This is purely stylistic
+   * for account for upper/lower bounds.
    */
   useEffect(() => {
     if (percentage < 2) {
@@ -38,7 +41,10 @@ export default function ProgressBar({ percentage }: Props) {
 
   return (
     <Box position="relative" height="full" width={7} mr={2}>
+      {/* Full height grey bar */}
       <Flex position="absolute" left={3} bgColor="gray.200" height="full" width={2} borderRadius={10} />
+
+      {/* Flexible height green bar */}
       <Flex
         position="absolute"
         left={3}
@@ -49,6 +55,8 @@ export default function ProgressBar({ percentage }: Props) {
         borderRadius={10}
         justifyContent="flex-end"
       />
+
+      {/* Bus icon and encompassing circle */}
       <Flex
         position="absolute"
         left={0.5}

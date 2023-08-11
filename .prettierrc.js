@@ -1,7 +1,7 @@
 /**
  * Last modified: 29-06-2023
  * Modifying author: Stephen Lunt
- * File description: Configuration file for prettier - the code formatter.
+ * File description: Configuration file for prettier code formatting.
  *
  * Documentation: https://prettier.io/docs/en/configuration.html
  */

@@ -18,6 +18,13 @@ type Props = {
 
 /**
  * Returns an image sized for mobile with an optional heading and text field.
+ *
+ * @param imgSrc the image source.
+ * @param imgAlt descriptive alt text of the image.
+ * @param heading a heading for the image.
+ * @param innerText a smaller text section to overlay the image.
+ * @param height the images height.
+ * @returns a reusable image card.
  */
 export default function ImageCard({ imgSrc, imgAlt, heading, innerText, height }: Props) {
   return (

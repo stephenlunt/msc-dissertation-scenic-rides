@@ -1,10 +1,10 @@
 """
-Last modified: 21-07-2023
-Modifying author: Stephen Lunt
-File description: A standalone Python script that loops through the AD122_RoutePoints.csv
-file and enters them into Xcode's iPhone simulator. It was used for automated testing
-of the vertical scrollbar on the Guidebook screen. I.e., it simulates the geolocation
-updating so to easily see the effect on the UI.
+* Last modified: 21-07-2023
+* Modifying author: Stephen Lunt
+* File description: A standalone Python script that loops through the AD122_RoutePoints.csv
+file and enters them into Xcode's iPhone simulator. Used for automated testing
+of the scrollbar in the Guidebook screen. It simulates the geolocation updates
+as if on the bus journey.
 """
 
 from dataclasses import dataclass
@@ -22,9 +22,9 @@ class Coordinate:
     lat: str
     long: str
 
-def main():
+def main() -> None:
     """
-    Main func to reads in the CSV file and loop through points.
+    Main function to reads in the CSV file and loop through points.
     """
     route_points = read_in_file()
 
@@ -40,7 +40,7 @@ def main():
         
 def read_in_file() -> list:
     """
-    Reads the CSV file and returns a list each row as a Coordinate class.
+    Reads the CSV file and returns a list of each row as a Coordinate class.
     """
     route_points = []
     csv_file_path = "./AD122_RoutePoints.csv"
@@ -64,7 +64,6 @@ def input_on_screen(point: Coordinate) -> None:
     pyautogui.click(x=415, y=285)
     pyautogui.click(x=605, y=307)
 
-    # Window bottom left corner
     pyautogui.write(point.lat)
     pyautogui.press('tab')
     pyautogui.write(point.long)

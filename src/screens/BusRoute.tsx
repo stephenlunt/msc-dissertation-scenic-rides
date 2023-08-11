@@ -17,6 +17,8 @@ type RouteScreenProps = NativeStackScreenProps<RootStackParamList, "BusRoute">;
 
 /**
  * The React default component export for the Bus Route screen.
+ *
+ * @returns the bus route screen component.
  */
 export default function BusRoute({ route, navigation }: RouteScreenProps) {
   // Access the 'id' parameter from the navigation props passed through the link.

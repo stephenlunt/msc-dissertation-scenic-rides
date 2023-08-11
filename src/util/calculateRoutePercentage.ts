@@ -1,7 +1,7 @@
 /**
  * Last modified: 26-07-2023
  * Modifying author: Stephen Lunt
- * File description: Util function to calculate the percentage of a route travelled.
+ * File description: Function to calculate the percentage of a route travelled.
  */
 
 import type { BusStop } from "../data/busStops";

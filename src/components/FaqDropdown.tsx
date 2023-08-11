@@ -14,6 +14,13 @@ type Props = {
   children: JSX.Element;
 };
 
+/**
+ * A component with a header question and text answer in a dropdown box.
+ *
+ * @param heading the question.
+ * @param children React child components that answer the question.
+ * @returns an FAQ component.
+ */
 export default function FaqDropdown({ heading, children }: Props) {
   const [expanded, setExpanded] = useState<boolean>(false);
 

@@ -31,6 +31,8 @@ let locationSubscription: Location.LocationSubscription | undefined;
 
 /**
  * The React default component export for the guidebook screen.
+ *
+ * @returns the guidebook screen component.
  */
 export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   // Navigation state
@@ -158,11 +160,8 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
   }, [stops, lastStop, nextStop, nearestPoint, direction]);
 
   /**
-   * Switches outbound and outbound on click of the swap direction button. The sort function
+   * Switches outbound and inbound on click of the swap direction button. The sort function
    * swaps the order of the stops based on their sequence to switch their display in the UI.
-   * Documentation for the sort method is available below.
-   *
-   * Sort method source URL: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
    */
   function swapDirection() {
     if (!stops) return;

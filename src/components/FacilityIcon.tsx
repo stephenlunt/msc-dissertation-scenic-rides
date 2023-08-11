@@ -24,6 +24,9 @@ type Props = { facility: Facility };
 
 /**
  * Component to return the facility icon and type.
+ *
+ * @param facility the type of facility.
+ * @returns a component with the facility icon and display name.
  */
 export default function FacilityIcon({ facility }: Props) {
   return (
@@ -45,6 +48,9 @@ export default function FacilityIcon({ facility }: Props) {
 
 /**
  * Switch function to return the correct MaterialIcon type.
+ *
+ * @param facility the type of facility.
+ * @returns an icon representing the facility.
  */
 function IconSwitcher({ facility }: Props) {
   switch (facility) {

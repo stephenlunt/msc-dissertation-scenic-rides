@@ -6,6 +6,11 @@
 
 import { ScrollView, Heading, Text, Flex, Link } from "native-base";
 
+/**
+ * The React default component export for the about screen.
+ *
+ * @returns the about screen component.
+ */
 export default function About() {
   return (
     <ScrollView mx={4} pb={4}>

@@ -12,8 +12,7 @@ import { type BusRoutePoint, routePoints } from "../../data/routePoints";
 import { type BusStop, stopsData } from "../../data/busStops";
 import { Direction } from "../../data/types";
 
-// AD122 route data points
-const ad122Points: BusRoutePoint[] = routePoints.filter((r) => r.id === "AD122")[0].points;
+// AD122 route stops data
 const ad122Stops: BusStop[] = stopsData.filter((r) => r.id === "AD122")[0].stops;
 const inboundStops: BusStop[] = [...ad122Stops].sort((stopA, stopB) => stopB.sequence - stopA.sequence);
 
