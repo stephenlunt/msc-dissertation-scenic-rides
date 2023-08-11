@@ -54,7 +54,7 @@ export default function Home() {
                   innerText={busRoute.name}
                 />
               </Pressable>
-              <Text fontSize="sm" color="gray.700">
+              <Text fontSize="sm" color="gray.700" mb={2}>
                 Image Credit: <Link href={busRoute.image.linkingUrl}>{busRoute.image.displayText}</Link>
               </Text>
             </Box>

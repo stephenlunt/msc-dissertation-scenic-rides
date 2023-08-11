@@ -55,6 +55,11 @@ def read_in_file() -> list:
 
 
 def input_on_screen(point: Coordinate) -> None:
+    """
+    Controls mouse and keyboard events to input coordinate values into
+    Xcode. Note: this is set up for a specific screen size and may not 
+    work on all developers devices.
+    """
     pyautogui.click(x=355, y=8)
     pyautogui.click(x=415, y=285)
     pyautogui.click(x=605, y=307)
