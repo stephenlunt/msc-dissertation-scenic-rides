@@ -16,6 +16,12 @@ type Props = {
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
+/**
+ * React component for a reusable error message.
+ *
+ * @param msg the error message to be displayed to the user.
+ * @returns an error message screen.
+ */
 export default function ErrorMessage({ msg }: Props) {
   const navigation = useNavigation<NavigationProp>();
 
