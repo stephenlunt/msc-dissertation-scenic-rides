@@ -18,7 +18,7 @@ export default function About() {
         About the App
       </Heading>
       <Text mb={4}>
-        Scenic Rides is a mobile guidebook for scenic bus routes in England. We hope to help enhance your journey by
+        Scenic Rides is a mobile guidebook for scenic bus journeys in England. We hope to help enhance your journey by
         providing relevant information about local towns and attractions along the route, all in an easy-to-access place
         on your mobile phone.
       </Text>

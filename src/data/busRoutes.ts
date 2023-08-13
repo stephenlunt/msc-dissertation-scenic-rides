@@ -30,7 +30,7 @@ export const busRoutesData: BusRoute[] = [
       linkingUrl: "https://www.gonortheast.co.uk/ad122/"
     },
     description:
-      "The AD122 is a scenic route through the Northumberland countryside between the towns of Hexham and Haltwhistle.\n\nIt's perfect for discovering some of England's Roman heritage and best walking trails running along the path of Hadrian's Wall.",
+      "The AD122 is a scenic route through the Northumberland countryside between the towns of Hexham and Haltwhistle.\n\nIt's perfect for discovering some of England's Roman heritage and the best walking trails running along the path of Hadrian's Wall.",
     frequency: "Once every 2 hours.",
     timetable: {
       displayText: "Go North East",

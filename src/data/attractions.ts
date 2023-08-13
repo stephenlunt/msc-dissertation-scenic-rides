@@ -112,7 +112,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Close to Chesters Roman Fort are the remains of a Roman bridge across the North Tyne.\n\nOn the eastern river bank you can see evidence of two successive bridges:  an early one that just carried Hadrian's Wall, and a second, much larger one, that carried the Military Way - the road that serviced the Wall.",
+          "Close to Chesters Roman Fort is the remains of a Roman bridge across the North Tyne.\n\nOn the eastern river bank, you can see evidence of two successive bridges:  an early one that just carried Hadrian's Wall, and a second, much larger one, that carried the Military Way - the road that serviced the Wall.",
         freeEntry: true,
         openingTimes: {
           other: "Open any reasonable time during daylight hours"
@@ -190,7 +190,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Not far east of Chesters Roman Fort is a 15 metre-long stretch of Hadrian's Wall at Planetrees.\n\nThis length of wall is important for what it reveals about a change of plan that took place during the construction of the Wall, when its width was narrowed from 10 to 8 Roman feet.",
+          "Not far east of Chesters Roman Fort is a 15-metre-long stretch of Hadrian's Wall at Planetrees.\n\nThis length of the wall is important for what it reveals about a change of plan that took place during the construction of the wall when its width was narrowed from 10 to 8 Roman feet.",
         freeEntry: true,
         openingTimes: {
           other: "Open any reasonable time during daylight hours"
@@ -269,7 +269,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Built by the soldiers of Carrawburgh, this structure stands as a fascinating temple to the god Mithras.\n\nMithraism was a Roman religion inspired by a god originally worshipped in the eastern Empire. According to legend, Mithras captured and killed a sacred bull in a cave, which Mithraic temples were intended to evoke.\n\nThe temple was built by soldiers at the fort around AD 200 and destroyed about AD 350. Three altars found here (replicas stand in the temple) were dedicated by commanding officers of the unit stationed here, the First Cohort of Batavians from the Rhineland.",
+          "Built by the soldiers of Carrawburgh, this structure stands as a fascinating temple to the god Mithras.\n\nMithraism was a Roman religion inspired by a god originally worshipped in the Eastern Empire. According to legend, Mithras captured and killed a sacred bull in a cave, which Mithraic temples were intended to evoke.\n\nThe temple was built by soldiers at the fort around AD 200 and destroyed about AD 350. Three altars found here (replicas stand in the temple) were dedicated by commanding officers of the unit stationed here, the First Cohort of Batavians from the Rhineland.",
         freeEntry: true,
         openingTimes: {
           other: "Open any reasonable time during daylight hours"
@@ -348,7 +348,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "The Sill is the perfect place to start exploring Northumberland National Park, and a fantastic location to connect with nature and the National Park’s unique and special landscapes.\n\nLocated just a stone’s throw from Hadrian’s Wall, The Sill is free to enter and features exhibitions, a rooftop walk, cafe and shop.",
+          "The Sill is the perfect place to start exploring Northumberland National Park and a fantastic location to connect with nature and the National Park’s unique and special landscapes.\n\nLocated just a stone’s throw from Hadrian’s Wall, The Sill is free to enter and features exhibitions, a rooftop walk, a cafe and a shop.",
         freeEntry: true,
         openingTimes: {
           weekday: "10AM - 5PM",
@@ -389,7 +389,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Vindolanda lies just to the south of the curtain wall of Hadrian's Wall and has a very different ‘feel’ to other sites along the Wall.\n\nIt lies upon the first Roman frontier in the north – The Stanegate Road and in a stunning landscape which lets your imagination really connect with its past.\n\nAlthough first built by the Roman army before Hadrian’s Wall Vindolanda became an important construction and garrison base for the Wall, a Hadrian’s Wall fort in its own right. During this time Vindolanda was demolished and completely re-built no fewer than nine times. Each re-build, each community, leaving their own distinctive mark on the landscape and archaeology of the site.",
+          "Vindolanda lies just to the south of the curtain wall of Hadrian's Wall and has a very different feel to other sites along the Wall.\n\nIt lies upon the first Roman frontier in the north – The Stanegate Road and in a stunning landscape which lets your imagination really connect with its past.\n\nAlthough first built by the Roman army before Hadrians Wall Vindolanda became an important construction and garrison base for the Wall, a Hadrians Wall fort in its own right. During this time Vindolanda was demolished and completely rebuilt no fewer than nine times. Each re-build, each community, leaving their own distinctive mark on the landscape and archaeology of the site.",
         freeEntry: false,
         openingTimes: {
           weekday: "9:30AM - 5:30PM",
@@ -434,7 +434,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Cawfields is a dramatic stretch of Hadrian's Wall on a steep slope, one of the highest standing sections of the Wall. Within its length there are turrets and an impressive milecastle, which was built by the Second Legion.",
+          "Cawfields is a dramatic stretch of Hadrian's Wall on a steep slope, one of the highest standing sections of the Wall. Within its length, there are turrets and an impressive mile castle, which was built by the Second Legion.",
         freeEntry: true,
         openingTimes: {
           other: "Open any reasonable time during daylight hours"
@@ -476,7 +476,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Immerse yourself in the life of a Roman soldier at the Roman Army Museum.\n\nThe museum includes three galleries, 3D film and holographic classroom. Based at the site of Magna Roman Fort the museum is situated next to one of the most complete sections of Hadrian’s Wall.",
+          "Immerse yourself in the life of a Roman soldier at the Roman Army Museum.\n\nThe museum includes three galleries, 3D film and a holographic classroom. Based at the site of Magna Roman Fort the museum is situated next to one of the most complete sections of Hadrians Wall.",
         freeEntry: false,
         openingTimes: {
           weekday: "9:30AM - 5:30PM",
@@ -520,7 +520,7 @@ export const attractionData: BusRoute[] = [
           displayText: "Google Maps"
         },
         description:
-          "Originally built in the 12th century, and later strengthened using stones from nearby Hadrian’s Wall, Thirlwall Castle began to fall into disrepair in the 17th century.\n\nIt was originally the home of the Thirlwall family, and later fortified by John Thirlwall in about 1330.",
+          "Originally built in the 12th century, and later strengthened using stones from nearby Hadrians Wall, Thirlwall Castle began to fall into disrepair in the 17th century.\n\nIt was originally the home of the Thirlwall family, and later fortified by John Thirlwall in about 1330.",
         freeEntry: true,
         openingTimes: {
           other: "Open any reasonable time during daylight hours"

@@ -63,7 +63,8 @@ export const stopsData: BusRoute[] = [
         lat: 54.98994399999999,
         long: -2.115331,
         nearestPoint: 29,
-        details: "Acomb is a small village just north of Hexham. Here you can find several small hotels and inns for staying the night or food & drink."
+        details:
+          "Acomb is a small village just north of Hexham. Here you can find several small hotels and inns for staying the night or food & drink."
       },
       {
         sequence: 3,
@@ -94,7 +95,7 @@ export const stopsData: BusRoute[] = [
         lat: 55.02964799999999,
         long: -2.129195,
         nearestPoint: 59,
-        details: "George Hotel is an 18th century building offering a range of rooms in Chollerford.",
+        details: "George Hotel is an 18th-century building offering a range of rooms in Chollerford.",
         facilities: {
           allFacilities: [Facility.Hotel, Facility.FoodAndDrink],
           credit: {
@@ -204,7 +205,7 @@ export const stopsData: BusRoute[] = [
         lat: 54.981911,
         long: -2.533252000000001,
         nearestPoint: 431,
-        details: "Greenhead hotel offers cosy rooms and dining on the Northumberland border.",
+        details: "Greenhead Hotel offers cosy rooms and dining on the Northumberland border.",
         facilities: {
           allFacilities: [Facility.Hotel, Facility.FoodAndDrink],
           credit: {
