@@ -6,13 +6,14 @@
 
 import { useEffect, useState } from "react";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { View, ScrollView, Heading, Box, Flex, Text, Button, Link } from "native-base";
+import { ScrollView, Heading, Box, Flex, Text, Link } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import { type Attraction, attractionData } from "../data/attractions";
 import { AttractionCategory, AttractionIconSwitcher } from "../components/AttractionIcon";
 import ImageCard from "../components/ImageCard";
 import CreditFooter from "../components/CreditFooter";
+import ErrorMessage from "../components/ErrorMessage";
 
 // Attraction screen navigation props
 type AttractionScreenProps = NativeStackScreenProps<RootStackParamList, "Attraction">;
@@ -109,25 +110,6 @@ export default function Attraction({ route, navigation }: AttractionScreenProps)
       <CreditFooter credits={attraction.credits} />
     </ScrollView>
   ) : (
-    <View>
-      <Heading py={4} textAlign="center">
-        Error
-      </Heading>
-      <Text py={4}>
-        Sorry, an error occurred loading the attraction data. Please return home or restart the application.
-      </Text>
-      <Button
-        onPress={() => navigation.navigate("Home")}
-        display="flex"
-        justifyContent="center"
-        bgColor="gray.200"
-        px={4}
-        m={1}
-        borderColor="gray.300"
-        borderWidth={1}
-      >
-        <Text fontWeight="bold">Return Home</Text>
-      </Button>
-    </View>
+    <ErrorMessage msg="Sorry, an error occurred loading the attraction data. Please return home or restart the application." />
   );
 }

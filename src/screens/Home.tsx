@@ -7,11 +7,12 @@
 import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { View, ScrollView, Pressable, Box, Flex, Text, Link, Button, Heading } from "native-base";
+import { View, ScrollView, Pressable, Box, Flex, Text, Link, Button } from "native-base";
 
 import { RootStackParamList } from "../../App";
 import { type BusRoute, busRoutesData } from "../data/busRoutes";
 import ImageCard from "../components/ImageCard";
+import ErrorMessage from "../components/ErrorMessage";
 
 // Navigation props for the home screen.
 type HomeScreenProp = NativeStackNavigationProp<RootStackParamList, "Home">;
@@ -92,25 +93,6 @@ export default function Home() {
       </Flex>
     </View>
   ) : (
-    <View>
-      <Heading py={4} textAlign="center">
-        Error
-      </Heading>
-      <Text py={4}>
-        Sorry, an error occurred loading the bus route data. Please return home or restart the application.
-      </Text>
-      <Button
-        onPress={() => navigation.navigate("Home")}
-        display="flex"
-        justifyContent="center"
-        bgColor="gray.200"
-        px={4}
-        m={1}
-        borderColor="gray.300"
-        borderWidth={1}
-      >
-        <Text fontWeight="bold">Return Home</Text>
-      </Button>
-    </View>
+    <ErrorMessage msg="Sorry, an error occurred loading the bus route data. Please return home or restart the application." />
   );
 }

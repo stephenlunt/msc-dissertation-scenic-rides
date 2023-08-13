@@ -1,5 +1,5 @@
 /**
- * Last modified: 26-07-2023
+ * Last modified: 01-08-2023
  * Modifying author: Stephen Lunt
  * File description: React component for the Guidebook screen.
  */
@@ -8,7 +8,7 @@ import { useEffect, useState, useRef } from "react";
 import * as Location from "expo-location";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { ScrollView } from "react-native";
-import { View, Flex, Text, Heading, Button, IconButton } from "native-base";
+import { View, Flex, Text, Heading, IconButton } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
@@ -22,6 +22,7 @@ import calculateRouteProgress from "../util/calculateRouteProgress";
 import calculateRoutePercentage from "../util/calculateRoutePercentage";
 import ProgressBar from "../components/ProgressBar";
 import StopList from "../components/StopList";
+import ErrorMessage from "../components/ErrorMessage";
 
 // Navigation props for the guidebook screen.
 type GuidebookScreenProps = NativeStackScreenProps<RootStackParamList, "Guidebook">;
@@ -53,7 +54,7 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
 
   // Geolocation state
   const [geolocation, setGeolocation] = useState<Location.LocationObject>();
-  const [locGranted, setLocGranted] = useState<boolean>(false);
+  const [locGranted, setLocGranted] = useState<boolean>(true);
 
   // Refs
   const scrollViewRef = useRef<null | ScrollView>(null);
@@ -212,25 +213,6 @@ export default function Guidebook({ route, navigation }: GuidebookScreenProps) {
       </ScrollView>
     </View>
   ) : (
-    <View>
-      <Heading py={4} textAlign="center">
-        Error
-      </Heading>
-      <Text py={4}>
-        Sorry, an error occurred loading the bus route data. Please return home or restart the application.
-      </Text>
-      <Button
-        onPress={() => navigation.navigate("Home")}
-        display="flex"
-        justifyContent="center"
-        bgColor="gray.200"
-        px={4}
-        m={1}
-        borderColor="gray.300"
-        borderWidth={1}
-      >
-        <Text fontWeight="bold">Return Home</Text>
-      </Button>
-    </View>
+    <ErrorMessage msg="Sorry, an error occurred loading the bus route data. Please return home or restart the application." />
   );
 }
