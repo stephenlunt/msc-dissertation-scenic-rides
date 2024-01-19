@@ -2,6 +2,8 @@
 
 Scenic Rides is a mobile guidebook for scenic bus routes in the North East of England. It's a React Native project for iOS and Android mobile devices.
 
+***Update (2024-01-19):*** The write-up for this dissertation project in now published on my [personal blog](http://stephen-lunt.dev/blog/mobile-guidebook-for-a-scenic-bus-route/).
+
 
 ## Project Commands
 
